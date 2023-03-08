@@ -6,7 +6,7 @@
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 18:25:52 by pgros             #+#    #+#             */
-/*   Updated: 2023/03/07 18:27:00 by pgros            ###   ########.fr       */
+/*   Updated: 2023/03/08 16:31:33 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 //constructors and destructors
 PhoneBook::PhoneBook()
 {
-	std::cout << "Default constructor of PhoneBook called." << std::endl;
+	// std::cout << "Default constructor of PhoneBook called." << std::endl;
+	this->_nb_of_contacts = 0;
 }
 // PhoneBook::PhoneBook(const PhoneBook& other)
 // {
@@ -26,7 +27,7 @@ PhoneBook::PhoneBook()
 // }
 PhoneBook::~PhoneBook()
 {
-	std::cout << "Destructor of PhoneBook called." << std::endl;
+	// std::cout << "Destructor of PhoneBook called." << std::endl;
 }
 //overloads
 // PhoneBook& PhoneBook::operator=(const PhoneBook& rhs)
