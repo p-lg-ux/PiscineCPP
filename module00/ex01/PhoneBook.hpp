@@ -6,7 +6,7 @@
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 14:10:56 by pgros             #+#    #+#             */
-/*   Updated: 2023/03/08 20:32:18 by pgros            ###   ########.fr       */
+/*   Updated: 2023/03/09 19:16:38 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,12 @@
 # include <string>
 # include "Contact.hpp"
 
+# define LINE "---------------------------------------------"
+
 class PhoneBook
 {
 	private:
-	Contact _tab[8];
+	Contact _contacts_tab[8];
 	int		_nb_of_contacts;
 	
 	public:
@@ -28,8 +30,9 @@ class PhoneBook
 	// PhoneBook(const PhoneBook& other);
 	~PhoneBook();
 
-	void	add();
-	void	search();
+	void	addContact(void);
+	void	displayAll(void);
+	void	search(void);
 	//overloads
 	// PhoneBook& operator=(const PhoneBook& rhs);
 };

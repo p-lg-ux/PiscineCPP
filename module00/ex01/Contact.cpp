@@ -6,7 +6,7 @@
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 18:23:31 by pgros             #+#    #+#             */
-/*   Updated: 2023/03/08 19:49:05 by pgros            ###   ########.fr       */
+/*   Updated: 2023/03/09 19:57:46 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,58 +25,54 @@ Contact::~Contact()
 	// std::cout << "Destructor of Contact called." << std::endl;
 }
 
-/*	setters	*/
-void	Contact::setFirstName(std::string str)
+std::string	Contact::read_input(std::string prompt)
 {
-	this->_first_name = str;
-	return ;
+	std::string	str = "";
+
+	while (1)
+	{
+		std::cout << prompt;
+		std::cin >> str ;
+		if (str != "")
+			break;
+		else
+			std::cout << RED_B << "Invalid input read_input" << RESET << std::endl;
+	}
+	return (str);
 }
 
-void	Contact::setLastName(std::string str)
+
+void	Contact::setAttributes(void)
 {
-	this->_last_name = str;
-	return ;
+	std::cout << "Please, enter contact infos:" << std::endl ;
+	this->_first_name = read_input("first name > ");
+	this->_last_name = read_input("last name > ");
+	this->_nickname = read_input("nickname > ");
+	this->_phone_nb = read_input("phone number > ");
+	this->_secret = read_input("darkest secret > ");
+	
 }
 
-void	Contact::setNickname(std::string str)
+void	Contact::displayFull(void)
 {
-	this->_nickname = str;
-	return ;
+	std::cout << BOLD << "first name: " << RESET << _first_name << std::endl;
+	std::cout << BOLD << "last name: " << RESET << _last_name << std::endl;
+	std::cout << BOLD << "nickname: " << RESET << _nickname << std::endl;
+	std::cout << BOLD << "phone number: " << RESET << _phone_nb << std::endl;
+	std::cout << BOLD << "darkest secret: " << RESET << _secret << std::endl;
 }
 
-void	Contact::setPhoneNumber(std::string str)
+void	Contact::displayShort(int index)
 {
-	this->_phone_nb = str;
-	return ;
+	std::cout << BOLD << "|" << RESET;
+	std::cout << std::setw(10) << index;
+	std::cout << BOLD << "|" << RESET;
+	std::cout << std::setw(10) << this->_first_name;
+	std::cout << BOLD << "|" << RESET;
+	std::cout << std::setw(10) << this->_last_name;
+	std::cout << BOLD << "|" << RESET;
+	std::cout << std::setw(10) << this->_nickname;
+	std::cout << BOLD << "|" << RESET << std::endl;
 }
 
-void	Contact::setSecret(std::string str)
-{
-	this->_secret = str;
-	return ;
-}
 
-/*	getters	*/
-std::string	Contact::getFirstName(void)
-{
-	return (this->_first_name);
-}
-
-std::string	Contact::getLastName(void)
-{
-	return (this->_last_name);
-}
-
-std::string	Contact::getNickname(void)
-{
-	return (this->_nickname);
-}
-
-std::string	Contact::getPhoneNumber(void)
-{
-	return (this->_phone_nb);
-}
-std::string	Contact::getSecret(void)
-{
-	return (this->_secret);
-}

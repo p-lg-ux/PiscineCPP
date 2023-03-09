@@ -6,19 +6,11 @@
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 18:27:15 by pgros             #+#    #+#             */
-/*   Updated: 2023/03/08 20:31:34 by pgros            ###   ########.fr       */
+/*   Updated: 2023/03/09 19:23:25 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
-
-void	add_command(void)
-{
-	std::string str[5];
-	int			i = 0;
-
-	
-}
 
 int main(void)
 {
@@ -27,15 +19,16 @@ int main(void)
 	
 	while (1)
 	{
-		std::cout << "Enter a command (ADD, SEARCH or EXIT):" << std::endl << "> " ;
+		std::cout << std::endl << YELLOW_B << "Enter a command (ADD, SEARCH or EXIT):" << RESET << std::endl << "> " ;
 		std::cin >> command;
 		if (command == "EXIT")
 			break;
-		// else if (command == "SEARCH")
-		// else if (command == "ADD")
+		else if (command == "SEARCH")
+			book.search();
+		else if (command == "ADD")
+			book.addContact();
 		else
-			std::cout << "Invalid command" << std::endl;
+			std::cout << RED_B << "Invalid command" << RESET << std::endl;
 	}
-	
 	return (0);
 }

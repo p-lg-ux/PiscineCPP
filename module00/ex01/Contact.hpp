@@ -6,7 +6,7 @@
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 14:17:25 by pgros             #+#    #+#             */
-/*   Updated: 2023/03/08 19:35:25 by pgros            ###   ########.fr       */
+/*   Updated: 2023/03/09 19:57:52 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,14 @@
 # define CONTACT_HPP
 # include <iostream>
 # include <string>
+# include <iomanip>
+
+# define RED_B		"\033[1;31m"
+# define YELLOW_B	"\033[1;33m"
+# define BOLD		"\033[1m"
+# define RED		"\033[31m"
+# define YELLOW		"\033[33m"
+# define RESET		"\033[0m"
 
 class Contact
 {
@@ -23,6 +31,8 @@ class Contact
 	std::string	_nickname;
 	std::string	_phone_nb;
 	std::string	_secret;
+	
+	std::string	read_input(std::string prompt);
 
 	public:
 	//constructors and destructors
@@ -30,20 +40,9 @@ class Contact
 	// Contact(const Contact& other);
 	~Contact();
 
-	/*	setters	*/
-	void	setFirstName(std::string str);
-	void	setLastName(std::string str);
-	void	setNickname(std::string str);
-	void	setPhoneNumber(std::string str);
-	void	setSecret(std::string str);
+	void	setAttributes(void);
+	void	displayFull(void);
+	void	displayShort(int index);
 
-	/*	getters	*/
-	std::string	getFirstName(void);
-	std::string	getLastName(void);
-	std::string	getNickname(void);
-	std::string	getPhoneNumber(void);
-	std::string	getSecret(void);
-	//overloads
-	// Contact& operator=(const Contact& rhs);
 };
 #endif
