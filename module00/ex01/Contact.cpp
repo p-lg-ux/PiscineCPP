@@ -6,7 +6,7 @@
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 18:23:31 by pgros             #+#    #+#             */
-/*   Updated: 2023/03/09 19:57:46 by pgros            ###   ########.fr       */
+/*   Updated: 2023/03/10 19:16:25 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,24 @@ std::string	Contact::read_input(std::string prompt)
 
 	while (1)
 	{
-		std::cout << prompt;
-		std::cin >> str ;
-		if (str != "")
-			break;
+		std::cout << YELLOW_B << prompt << RESET;
+		std::cin.clear();
+		std::cin.unget();
+		std::cin.ignore();
+		if (std::getline(std::cin, str))
+		{
+			if (str.empty())
+				std::cout << std::endl << ERR_EMPTY << std::endl;
+			else
+				break ;
+		}
 		else
-			std::cout << RED_B << "Invalid input read_input" << RESET << std::endl;
+		{
+			std::cout << std::endl << ERR_INPUT << std::endl;
+			std::cin.clear();
+			std::cin.unget();
+			std::cin.ignore();
+		}
 	}
 	return (str);
 }
@@ -44,7 +56,7 @@ std::string	Contact::read_input(std::string prompt)
 
 void	Contact::setAttributes(void)
 {
-	std::cout << "Please, enter contact infos:" << std::endl ;
+	std::cout << YELLOW_B << "Please, enter contact infos:" << RESET << std::endl ;
 	this->_first_name = read_input("first name > ");
 	this->_last_name = read_input("last name > ");
 	this->_nickname = read_input("nickname > ");

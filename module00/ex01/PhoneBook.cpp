@@ -6,7 +6,7 @@
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 18:25:52 by pgros             #+#    #+#             */
-/*   Updated: 2023/03/09 19:59:06 by pgros            ###   ########.fr       */
+/*   Updated: 2023/03/10 19:09:59 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	PhoneBook::displayAll(void)
 	while (i < this->_nb_of_contacts)
 	{
 		this->_contacts_tab[i].displayShort(i);
-		i++;	
+		i++;
 	}
 	std::cout << BOLD << LINE << RESET << std::endl;
 }
@@ -78,17 +78,18 @@ void	PhoneBook::search(void)
 	this->displayAll();
 	while (1)
 	{
-		std::cout << std::endl << YELLOW_B << "Enter a contact index > " << RESET;
-		std::cin >> str;
+		// std::cout << std::endl << YELLOW_B << "Enter a contact index > " << RESET;
+		str = this->_contacts_tab[0].read_input("\nEnter a contact index > ");
+		// std::cin >> str;
 		if (str.length() != 1)
 		{
-			std::cout << RED_B << "Invalid input" << RESET << std::endl;
+			std::cout << ERR_INPUT << std::endl;
 			continue ;
 		}
 		if (str >= "0" && str <= "8")
 			break;
 		else
-			std::cout << RED_B << "Invalid input" << RESET << std::endl;
+			std::cout << ERR_INPUT << std::endl;
 	}
 	this->_contacts_tab[str[0] - '0'].displayFull();
 	
