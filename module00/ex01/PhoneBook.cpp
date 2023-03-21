@@ -6,7 +6,7 @@
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 18:25:52 by pgros             #+#    #+#             */
-/*   Updated: 2023/03/10 19:09:59 by pgros            ###   ########.fr       */
+/*   Updated: 2023/03/21 11:23:10 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,7 @@ PhoneBook::PhoneBook()
 	// std::cout << "Default constructor of PhoneBook called." << std::endl;
 	this->_nb_of_contacts = 0;
 }
-// PhoneBook::PhoneBook(const PhoneBook& other)
-// {
-// (void)other;
-// 	//std::cout << "Copy constructor of PhoneBook called." << std::endl;
-// }
+
 PhoneBook::~PhoneBook()
 {
 	// std::cout << "Destructor of PhoneBook called." << std::endl;
@@ -86,7 +82,7 @@ void	PhoneBook::search(void)
 			std::cout << ERR_INPUT << std::endl;
 			continue ;
 		}
-		if (str >= "0" && str <= "8")
+		if (str >= "0" && str <= "7")
 			break;
 		else
 			std::cout << ERR_INPUT << std::endl;

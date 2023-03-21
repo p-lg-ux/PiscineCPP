@@ -6,7 +6,7 @@
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 18:23:31 by pgros             #+#    #+#             */
-/*   Updated: 2023/03/10 19:16:25 by pgros            ###   ########.fr       */
+/*   Updated: 2023/03/21 11:22:48 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,17 @@ std::string	Contact::read_input(std::string prompt)
 	return (str);
 }
 
+std::string	Contact::cut_string(std::string str)
+{
+	std::string	new_str;
+
+	if (str.length() <= 10)
+		return (str);
+	new_str = str.substr(0, 10);
+	new_str[9] = '.';
+	return (new_str);
+}
+
 
 void	Contact::setAttributes(void)
 {
@@ -62,7 +73,6 @@ void	Contact::setAttributes(void)
 	this->_nickname = read_input("nickname > ");
 	this->_phone_nb = read_input("phone number > ");
 	this->_secret = read_input("darkest secret > ");
-	
 }
 
 void	Contact::displayFull(void)
@@ -79,12 +89,10 @@ void	Contact::displayShort(int index)
 	std::cout << BOLD << "|" << RESET;
 	std::cout << std::setw(10) << index;
 	std::cout << BOLD << "|" << RESET;
-	std::cout << std::setw(10) << this->_first_name;
+	std::cout << std::setw(10) << cut_string(this->_first_name);
 	std::cout << BOLD << "|" << RESET;
-	std::cout << std::setw(10) << this->_last_name;
+	std::cout << std::setw(10) << cut_string(this->_last_name);
 	std::cout << BOLD << "|" << RESET;
-	std::cout << std::setw(10) << this->_nickname;
+	std::cout << std::setw(10) << cut_string(this->_nickname);
 	std::cout << BOLD << "|" << RESET << std::endl;
 }
-
-

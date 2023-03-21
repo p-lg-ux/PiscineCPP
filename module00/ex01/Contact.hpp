@@ -6,7 +6,7 @@
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 14:17:25 by pgros             #+#    #+#             */
-/*   Updated: 2023/03/10 19:07:38 by pgros            ###   ########.fr       */
+/*   Updated: 2023/03/21 10:17:40 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,16 @@ class Contact
 	
 
 	public:
-	std::string	read_input(std::string prompt);
 	//constructors and destructors
 	Contact();
 	// Contact(const Contact& other);
 	~Contact();
 
-	void	setAttributes(void);
-	void	displayFull(void);
-	void	displayShort(int index);
+	void		setAttributes(void);
+	void		displayFull(void);
+	void		displayShort(int index);
+	std::string	read_input(std::string prompt);
+	std::string	cut_string(std::string str);
 
 };
 #endif
