@@ -6,7 +6,7 @@
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 18:27:15 by pgros             #+#    #+#             */
-/*   Updated: 2023/03/10 19:12:46 by pgros            ###   ########.fr       */
+/*   Updated: 2023/03/23 18:08:15 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int main(void)
 		std::cout << std::endl << YELLOW_B << "Enter a command (ADD, SEARCH or EXIT):" << RESET << std::endl << "> " ;
 		if (std::getline(std::cin, command))
 		{
-			// std::cout << command << std::endl;
 			if (command == "EXIT")
 				break;
 			else if (command == "SEARCH")
@@ -30,11 +29,11 @@ int main(void)
 			else if (command == "ADD")
 				book.addContact();
 			else
-				std::cout << ERR_INPUT << std::endl;
+				std::cerr << ERR_INPUT << std::endl;
 		}
 		else
 		{
-			std::cout << std::endl << ERR_INPUT << std::endl;
+			std::cerr << std::endl << ERR_INPUT << std::endl;
 			std::cin.clear();
 			std::cin.unget();
 			if (std::cin.peek() == EOF)

@@ -6,7 +6,7 @@
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 18:23:31 by pgros             #+#    #+#             */
-/*   Updated: 2023/03/21 11:22:48 by pgros            ###   ########.fr       */
+/*   Updated: 2023/03/23 18:07:25 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,13 @@ std::string	Contact::read_input(std::string prompt)
 		if (std::getline(std::cin, str))
 		{
 			if (str.empty())
-				std::cout << std::endl << ERR_EMPTY << std::endl;
+				std::cerr << std::endl << ERR_EMPTY << std::endl;
 			else
 				break ;
 		}
 		else
 		{
-			std::cout << std::endl << ERR_INPUT << std::endl;
+			std::cerr << std::endl << ERR_INPUT << std::endl;
 			std::cin.clear();
 			std::cin.unget();
 			std::cin.ignore();
