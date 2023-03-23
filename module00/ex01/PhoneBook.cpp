@@ -6,7 +6,7 @@
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 18:25:52 by pgros             #+#    #+#             */
-/*   Updated: 2023/03/21 11:23:10 by pgros            ###   ########.fr       */
+/*   Updated: 2023/03/23 16:47:05 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,18 +72,18 @@ void	PhoneBook::search(void)
 	std::string	str;
 
 	this->displayAll();
+	if (this->_nb_of_contacts < 1)
+		return ;
 	while (1)
 	{
-		// std::cout << std::endl << YELLOW_B << "Enter a contact index > " << RESET;
 		str = this->_contacts_tab[0].read_input("\nEnter a contact index > ");
-		// std::cin >> str;
 		if (str.length() != 1)
 		{
 			std::cout << ERR_INPUT << std::endl;
 			continue ;
 		}
-		if (str >= "0" && str <= "7")
-			break;
+		if (str >= "0" && str[0] - '0' < this->_nb_of_contacts)
+				break;
 		else
 			std::cout << ERR_INPUT << std::endl;
 	}
