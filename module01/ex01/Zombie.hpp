@@ -1,32 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Zombie.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/23 16:55:27 by pgros             #+#    #+#             */
-/*   Updated: 2023/04/03 15:31:47 by pgros            ###   ########.fr       */
+/*   Created: 2023/03/23 16:55:53 by pgros             #+#    #+#             */
+/*   Updated: 2023/04/03 15:51:42 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+#ifndef ZOMBIE_HPP
+# define ZOMBIE_HPP
+# include <iostream>
+# include <string>
 
-Zombie* newZombie( std::string name );
-void 	randomChump( std::string name );
-
-int main(void)
+class Zombie
 {
-	Zombie	first("First");
-	Zombie	*second = newZombie("Second");
+	private:
+	std::string	_name;
 
-	first.announce();
-	second->announce();
-	randomChump("Third");
-	first.announce();
-	second->announce();
-	delete second;
-	first.announce();
+	public:
+	//constructors and destructors
+	Zombie();
+	Zombie(std::string name);
+	~Zombie();
 	
-	return (0);
-}
+	//setter
+	void	setName(std::string name);
+
+	void	announce(void);
+};
+#endif

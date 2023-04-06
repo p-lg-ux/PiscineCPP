@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   HumanB.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/23 16:55:27 by pgros             #+#    #+#             */
-/*   Updated: 2023/04/03 15:31:47 by pgros            ###   ########.fr       */
+/*   Created: 2023/04/04 17:34:15 by pgros             #+#    #+#             */
+/*   Updated: 2023/04/05 16:37:44 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+#ifndef HUMANB_HPP
+# define HUMANB_HPP
+# include <iostream>
+# include <string>
+# include "Weapon.hpp"
 
-Zombie* newZombie( std::string name );
-void 	randomChump( std::string name );
-
-int main(void)
+class HumanB
 {
-	Zombie	first("First");
-	Zombie	*second = newZombie("Second");
+	private:
+	std::string	_name;
+	Weapon*		_weapon;
 
-	first.announce();
-	second->announce();
-	randomChump("Third");
-	first.announce();
-	second->announce();
-	delete second;
-	first.announce();
-	
-	return (0);
-}
+	public:
+	//constructors and destructors
+	HumanB(std::string name);
+	~HumanB();
+	void		setWeapon(Weapon& weapon);
+	void		attack(void) const;
+};
+#endif

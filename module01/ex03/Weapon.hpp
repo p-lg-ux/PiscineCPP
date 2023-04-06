@@ -1,32 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Weapon.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/23 16:55:27 by pgros             #+#    #+#             */
-/*   Updated: 2023/04/03 15:31:47 by pgros            ###   ########.fr       */
+/*   Created: 2023/04/04 17:19:49 by pgros             #+#    #+#             */
+/*   Updated: 2023/04/04 17:37:14 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+#ifndef WEAPON_HPP
+# define WEAPON_HPP
+# include <iostream>
+# include <string>
 
-Zombie* newZombie( std::string name );
-void 	randomChump( std::string name );
-
-int main(void)
+class Weapon
 {
-	Zombie	first("First");
-	Zombie	*second = newZombie("Second");
+	private:
+	std::string	_type;
 
-	first.announce();
-	second->announce();
-	randomChump("Third");
-	first.announce();
-	second->announce();
-	delete second;
-	first.announce();
-	
-	return (0);
-}
+	public:
+	//constructors and destructors
+	Weapon(std::string type);
+	~Weapon();
+	const std::string&	getType(void);
+	void	setType(std::string type);
+};
+#endif
