@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   WrongCat.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/21 17:02:36 by pgros             #+#    #+#             */
-/*   Updated: 2023/04/23 17:05:21 by pgros            ###   ########.fr       */
+/*   Created: 2023/05/05 15:48:53 by pgros             #+#    #+#             */
+/*   Updated: 2023/05/05 15:53:35 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ClapTrap.hpp"
+#ifndef WRONGCAT_HPP
+# define WRONGCAT_HPP
+# include <iostream>
+# include <string>
+# include "WrongAnimal.hpp"
 
-int main(void)
+class WrongCat : public WrongAnimal
 {
-	ClapTrap	bob("Bob");
-	ClapTrap	jim("Jim");
-
-	bob.attack(jim.getName());
-	jim.takeDamage(bob.getAttackDamage());
-	for (int i = 0; i< 10; i++)
-		jim.beRepaired(1);
-	jim.attack(bob.getName());
-	bob.takeDamage(jim.getAttackDamage());
-	jim.beRepaired(1);
-	return (0);
-}
+	public:
+	//constructors and destructors
+	WrongCat();
+	WrongCat(const WrongCat& other);
+	~WrongCat();
+	//overloads
+	WrongCat& operator=(const WrongCat& rhs);
+	void makeSound(void) const;
+};
+#endif

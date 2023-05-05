@@ -6,7 +6,7 @@
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 17:03:47 by pgros             #+#    #+#             */
-/*   Updated: 2023/04/23 18:04:57 by pgros            ###   ########.fr       */
+/*   Updated: 2023/04/23 18:08:00 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ ClapTrap::ClapTrap(std::string name) : _name(name)
 	this->setEnergyPoints(10);
 	this->setAttackDamage(0);
 	std::cout << "String constructor of ClapTrap called." << std::endl;
-	
 }
 
 ClapTrap::ClapTrap(const ClapTrap& other)

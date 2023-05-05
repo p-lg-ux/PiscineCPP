@@ -1,6 +1,7 @@
 *.json
 .vscode
 *.replace
+*.txt
 
 # Prerequisites
 *.d

@@ -1,28 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Animal.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/21 17:02:36 by pgros             #+#    #+#             */
-/*   Updated: 2023/04/23 17:05:21 by pgros            ###   ########.fr       */
+/*   Created: 2023/04/28 18:14:25 by pgros             #+#    #+#             */
+/*   Updated: 2023/05/05 12:37:21 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ClapTrap.hpp"
+#ifndef ANIMAL_HPP
+# define ANIMAL_HPP
+# include <iostream>
+# include <string>
 
-int main(void)
+class Animal
 {
-	ClapTrap	bob("Bob");
-	ClapTrap	jim("Jim");
+	protected:
+	std::string	_type;
 
-	bob.attack(jim.getName());
-	jim.takeDamage(bob.getAttackDamage());
-	for (int i = 0; i< 10; i++)
-		jim.beRepaired(1);
-	jim.attack(bob.getName());
-	bob.takeDamage(jim.getAttackDamage());
-	jim.beRepaired(1);
-	return (0);
-}
+	public:
+	//constructors and destructors
+	Animal();
+	Animal(const Animal& other);
+	virtual ~Animal();
+	//overloads
+	Animal& operator=(const Animal& rhs);
+
+	virtual void	makeSound(void) const;
+	std::string		getType(void) const;
+};
+#endif

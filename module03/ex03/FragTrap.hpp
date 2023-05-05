@@ -1,28 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   FragTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/21 17:02:36 by pgros             #+#    #+#             */
-/*   Updated: 2023/04/23 17:05:21 by pgros            ###   ########.fr       */
+/*   Created: 2023/04/23 17:06:46 by pgros             #+#    #+#             */
+/*   Updated: 2023/04/26 14:10:17 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ClapTrap.hpp"
+#ifndef FRAGTRAP_HPP
+# define FRAGTRAP_HPP
+# include <iostream>
+# include <string>
+# include "ClapTrap.hpp"
 
-int main(void)
+class FragTrap : public virtual ClapTrap
 {
-	ClapTrap	bob("Bob");
-	ClapTrap	jim("Jim");
+	public:
+	//constructors and destructors
+	FragTrap();
+	FragTrap(std::string name);
+	FragTrap(const FragTrap& other);
+	~FragTrap();
+	//overloads
+	FragTrap& operator=(const FragTrap& rhs);
+	
+	void	highFiveGuys();
 
-	bob.attack(jim.getName());
-	jim.takeDamage(bob.getAttackDamage());
-	for (int i = 0; i< 10; i++)
-		jim.beRepaired(1);
-	jim.attack(bob.getName());
-	bob.takeDamage(jim.getAttackDamage());
-	jim.beRepaired(1);
-	return (0);
-}
+};
+#endif
