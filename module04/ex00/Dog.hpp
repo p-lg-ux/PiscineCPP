@@ -6,7 +6,7 @@
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 11:19:33 by pgros             #+#    #+#             */
-/*   Updated: 2023/05/05 12:38:16 by pgros            ###   ########.fr       */
+/*   Updated: 2023/05/05 16:55:13 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ class Dog : public Animal
 	//constructors and destructors
 	Dog();
 	Dog(const Dog& other);
-	virtual ~Dog();
+	~Dog();
 	//overloads
 	Dog& operator=(const Dog& rhs);
 

@@ -6,7 +6,7 @@
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 18:23:13 by pgros             #+#    #+#             */
-/*   Updated: 2023/05/05 12:38:07 by pgros            ###   ########.fr       */
+/*   Updated: 2023/05/05 16:55:09 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ class Cat : public Animal
 	//constructors and destructors
 	Cat();
 	Cat(const Cat& other);
-	virtual ~Cat();
+	~Cat();
 	//overloads
 	Cat& operator=(const Cat& rhs);
 
