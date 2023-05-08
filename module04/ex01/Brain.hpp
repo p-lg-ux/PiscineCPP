@@ -1,36 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   Brain.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/28 18:14:25 by pgros             #+#    #+#             */
-/*   Updated: 2023/05/08 18:09:26 by pgros            ###   ########.fr       */
+/*   Created: 2023/05/05 16:49:23 by pgros             #+#    #+#             */
+/*   Updated: 2023/05/08 17:24:17 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ANIMAL_HPP
-# define ANIMAL_HPP
+#ifndef BRAIN_HPP
+# define BRAIN_HPP
 # include <iostream>
 # include <string>
-# include "Brain.hpp"
 
-class Animal
+class Brain
 {
-	protected:
-	std::string	_type;
+	private:
+	std::string	ideas[100];
 
 	public:
 	//constructors and destructors
-	Animal();
-	Animal(const Animal& other);
-	virtual ~Animal();
+	Brain();
+	Brain(const Brain& other);
+	~Brain();
 	//overloads
-	Animal& operator=(const Animal& rhs);
-
-	virtual void	makeSound(void) const;
-	virtual Brain	*getBrainAddress(void) const = 0;
-	std::string		getType(void) const;
+	Brain& operator=(const Brain& rhs);
+	std::string getIdea(int i) const;
+	void		setIdea(std::string);
 };
 #endif

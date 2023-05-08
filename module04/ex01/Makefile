@@ -6,7 +6,7 @@
 #    By: pgros <pgros@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/05 11:52:05 by pgros             #+#    #+#              #
-#    Updated: 2023/05/05 16:31:03 by pgros            ###   ########.fr        #
+#    Updated: 2023/05/05 17:54:55 by pgros            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,13 +21,15 @@ SRC = 	main.cpp \
 		Dog.cpp \
 		Cat.cpp \
 		WrongAnimal.cpp \
-		WrongCat.cpp
+		WrongCat.cpp \
+		Brain.cpp
 
 INC =	Animal.hpp \
 		Cat.hpp \
 		Dog.hpp \
 		WrongAnimal.hpp \
-		WrongCat.hpp
+		WrongCat.hpp \
+		Brain.hpp
 
 OBJ = $(SRC:%.cpp=%.o)
 

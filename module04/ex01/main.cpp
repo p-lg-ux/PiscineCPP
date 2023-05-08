@@ -6,7 +6,7 @@
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 11:52:35 by pgros             #+#    #+#             */
-/*   Updated: 2023/05/05 16:07:06 by pgros            ###   ########.fr       */
+/*   Updated: 2023/05/08 19:35:05 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,77 +19,51 @@
 
 int main(void)
 {
-    std::cout << std::endl << YELLOW << "Tests with Animal, Cat and Dog" << RESET << std::endl;
     {
-        const Animal* meta = new Animal();
-        const Animal* j = new Dog();
-        const Animal* i = new Cat();
-
-        std::cout << j->getType() << " " << std::endl;
-        std::cout << i->getType() << " " << std::endl;
-        i->makeSound(); //will output the cat sound!
+        std::cout << YELLOW << "Runtime polymorphism tests" << RESET << std::endl;
+        const Animal *j = new Dog();    
+        const Animal *i = new Cat();
+    
         j->makeSound();
-        meta->makeSound();
-
-        delete meta;
+        i->makeSound();
+        
+        delete i;
         delete j;
-        delete i;
     }
-    std::cout << std::endl << YELLOW << "Tests with WrongAnimal and WrongCat" << RESET << std::endl;
     {
-        const WrongAnimal* meta = new WrongAnimal();
-        const WrongAnimal* i = new WrongCat();
-
-        std::cout << i->getType() << " " << std::endl;
-        i->makeSound(); //will output the cat sound!
-        meta->makeSound();
-
-        delete meta;
-        delete i;
+        std::cout << std::endl << YELLOW << "Runtime polymorphism with array" << RESET << std::endl;
+        Animal  *tab[4];
+        Dog     doggo;
+        Cat     catsy;
+        (doggo.getBrainAddress())->setIdea("I'm the goodest of the bois!");
+        (catsy.getBrainAddress())->setIdea("Leave me alone, I'm the superior being here.");
+        (catsy.getBrainAddress())->setIdea("LASER! *zooooooom*");
+        tab[0] = new Dog(doggo);
+        tab[1] = new Dog(doggo);
+        tab[2] = new Cat(catsy);
+        tab[3] = new Cat(catsy);
+        for (int l = 0; l<4; l++)
+        {
+            tab[l]->makeSound();
+            std::cout << "idea 0: " << (tab[l]->getBrainAddress())->getIdea(0) << std::endl; 
+            std::cout << "idea 1: " << (tab[l]->getBrainAddress())->getIdea(1) << std::endl; 
+        }
+        
+        std::cout << std::endl << YELLOW << "Checking deep copies" << std::endl;
+        std::cout << "Doggos:" << RESET << std::endl;
+        std::cout << &doggo << " " << tab[0] << " " << tab[1] << std::endl;
+        std::cout << YELLOW << "Doggos' brains:" << RESET << std::endl;
+        std::cout << doggo.getBrainAddress() << " " << tab[0]->getBrainAddress() << " " << tab[1]->getBrainAddress() << std::endl;
+        std::cout << YELLOW << "Cats:" << RESET << std::endl;
+        std::cout << &catsy << " " << tab[2] << " " << tab[3] << std::endl;
+        std::cout << YELLOW << "Cats' brains:" << RESET << std::endl;
+        std::cout << doggo.getBrainAddress() << " " << tab[2]->getBrainAddress() << " " << tab[3]->getBrainAddress() << std::endl;
+        
+        std::cout << std::endl << YELLOW << "Destructors" << RESET << std::endl;
+        for (int l = 0; l<4; l++)
+        {
+            delete tab[l];
+        }
     }
 	return (0);
 }
-
-/*
-#include "Dog.hpp"
-#include "Cat.hpp"
-#include "Animal.hpp"
-#include "WrongCat.hpp"
-#include "WrongAnimal.hpp"
-
-# define GREY   "\x1b[30m"
-# define RED    "\x1b[31m"
-# define GREEN  "\x1b[32m"
-# define BLUE   "\x1b[34m"
-# define PURPLE "\x1b[35m"
-# define CYAN   "\x1b[36m"
-# define WHITE  "\x1b[37m"
-
-int main(void)
-{
-    std::cout << YELOW << "Creating constructor for the class Animal(void), Cat(luna), Dog(reglise) !" << END << std::endl;
-    Animal *animal = new Animal();
-    Animal *reglise = new Dog("reglise");
-    Animal *luna = new Cat("luna");
-    std::cout << GREEN << "called the function makeSound for the class ! (Animal, Cat, Dog)" << END << std::endl;
-    animal->makeSound();
-    luna->makeSound();
-    reglise->makeSound();
-    std::cout << BLUE << "called type for the Animal("<< animal->getType() <<") !" << END << std::endl;
-    std::cout << BLUE << "called type for the Cat("<< luna->getType() <<") !" << END << std::endl;
-    std::cout << BLUE << "called type for the Dog("<< reglise->getType() <<") !" << END << std::endl;
-    std::cout << RED << "destructor called for the class !(Animal, Cat, Dog)" << END << std::endl;
-    delete animal;
-    delete luna;
-    delete reglise;
-    std::cout << YELOW << "creating WrongAnimal and WrongCat testing the class is not virtual void makeSound()"<< END << std::endl;
-    WrongAnimal *wanimal = new WrongCat();
-    WrongCat *wcat = new WrongCat("luna");
-    std::cout << GREEN << "WrongAnimal and WrongCat called getType and makeSound " << END << std::endl;
-    std::cout << "WrongAnimal type " << wanimal->getType() << " makeSound "; wanimal->makeSound();
-    std::cout << "WrongCat type " << wcat->getType() << " makeSound "; wcat->makeSound();
-    std::cout << RED << "destructor called for the class !(WrongAnimal, WrongCat)" << END << std::endl;
-    delete wanimal;
-    delete wcat;
-    return (0);
-}*/
