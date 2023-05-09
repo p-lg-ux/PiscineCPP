@@ -6,7 +6,7 @@
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 11:52:35 by pgros             #+#    #+#             */
-/*   Updated: 2023/05/09 12:33:21 by pgros            ###   ########.fr       */
+/*   Updated: 2023/05/09 15:12:46 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,19 +45,19 @@ int main(void)
         for (int l = 0; l<4; l++)
         {
             tab[l]->makeSound();
-            std::cout << "idea 0: " << (((Dog *)tab[l])->getBrainAddress())->getIdea(0) << std::endl; 
-            std::cout << "idea 1: " << (((Dog *)tab[l])->getBrainAddress())->getIdea(1) << std::endl; 
+            std::cout << "idea 0: " << (tab[l]->getBrainAddress())->getIdea(0) << std::endl; 
+            std::cout << "idea 1: " << (tab[l]->getBrainAddress())->getIdea(1) << std::endl; 
         }
         
         std::cout << std::endl << YELLOW << "Checking deep copies" << std::endl;
         std::cout << "Doggos:" << RESET << std::endl;
         std::cout << &doggo << " " << tab[0] << " " << tab[1] << std::endl;
         std::cout << YELLOW << "Doggos' brains:" << RESET << std::endl;
-        std::cout << doggo.getBrainAddress() << " " << ((Dog*)tab[0])->getBrainAddress() << " " << ((Dog*)tab[1])->getBrainAddress() << std::endl;
+        std::cout << doggo.getBrainAddress() << " " << tab[0]->getBrainAddress() << " " << tab[1]->getBrainAddress() << std::endl;
         std::cout << YELLOW << "Cats:" << RESET << std::endl;
         std::cout << &catsy << " " << tab[2] << " " << tab[3] << std::endl;
         std::cout << YELLOW << "Cats' brains:" << RESET << std::endl;
-        std::cout << doggo.getBrainAddress() << " " << ((Cat *)tab[2])->getBrainAddress() << " " << ((Cat *)tab[3])->getBrainAddress() << std::endl;
+        std::cout << doggo.getBrainAddress() << " " << tab[2]->getBrainAddress() << " " << tab[3]->getBrainAddress() << std::endl;
         
         std::cout << std::endl << YELLOW << "Destructors" << RESET << std::endl;
         for (int l = 0; l<4; l++)
@@ -65,5 +65,9 @@ int main(void)
             delete tab[l];
         }
     }
+    // {
+	// 	Animal animal;
+	// 	Animal *animal_p = new Animal();
+    // }
 	return (0);
 }

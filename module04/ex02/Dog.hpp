@@ -1,36 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.hpp                                            :+:      :+:    :+:   */
+/*   Dog.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/28 18:23:13 by pgros             #+#    #+#             */
-/*   Updated: 2023/05/09 12:29:28 by pgros            ###   ########.fr       */
+/*   Created: 2023/05/05 11:19:33 by pgros             #+#    #+#             */
+/*   Updated: 2023/05/08 18:08:40 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CAT_HPP
-# define CAT_HPP
+#ifndef DOG_HPP
+# define DOG_HPP
 # include "Animal.hpp"
 # include "Brain.hpp"
 # include <iostream>
 # include <string>
 
-class Cat : public Animal
+class Dog : public Animal
 {
 	private:
 	Brain *_brain;
 
 	public:
 	//constructors and destructors
-	Cat();
-	Cat(const Cat& other);
-	~Cat();
+	Dog();
+	Dog(const Dog& other);
+	~Dog();
 	//overloads
-	Cat& operator=(const Cat& rhs);
+	Dog& operator=(const Dog& rhs);
 
-	void	makeSound(void) const;
-	Brain	*getBrainAddress(void) const;
+	void makeSound(void) const;
+	Brain		*getBrainAddress(void) const;
+
 };
 #endif

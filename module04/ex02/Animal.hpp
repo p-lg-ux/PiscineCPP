@@ -1,36 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.hpp                                            :+:      :+:    :+:   */
+/*   Animal.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/28 18:23:13 by pgros             #+#    #+#             */
-/*   Updated: 2023/05/09 12:29:28 by pgros            ###   ########.fr       */
+/*   Created: 2023/04/28 18:14:25 by pgros             #+#    #+#             */
+/*   Updated: 2023/05/08 18:09:26 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CAT_HPP
-# define CAT_HPP
-# include "Animal.hpp"
-# include "Brain.hpp"
+#ifndef ANIMAL_HPP
+# define ANIMAL_HPP
 # include <iostream>
 # include <string>
+# include "Brain.hpp"
 
-class Cat : public Animal
+class Animal
 {
-	private:
-	Brain *_brain;
+	protected:
+	std::string	_type;
 
 	public:
 	//constructors and destructors
-	Cat();
-	Cat(const Cat& other);
-	~Cat();
+	Animal();
+	Animal(const Animal& other);
+	virtual ~Animal();
 	//overloads
-	Cat& operator=(const Cat& rhs);
+	Animal& operator=(const Animal& rhs);
 
-	void	makeSound(void) const;
-	Brain	*getBrainAddress(void) const;
+	virtual void	makeSound(void) const;
+	virtual Brain	*getBrainAddress(void) const = 0;
+	std::string		getType(void) const;
 };
 #endif

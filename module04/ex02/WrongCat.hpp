@@ -1,36 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.hpp                                            :+:      :+:    :+:   */
+/*   WrongCat.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/28 18:23:13 by pgros             #+#    #+#             */
-/*   Updated: 2023/05/09 12:29:28 by pgros            ###   ########.fr       */
+/*   Created: 2023/05/05 15:48:53 by pgros             #+#    #+#             */
+/*   Updated: 2023/05/05 15:53:35 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CAT_HPP
-# define CAT_HPP
-# include "Animal.hpp"
-# include "Brain.hpp"
+#ifndef WRONGCAT_HPP
+# define WRONGCAT_HPP
 # include <iostream>
 # include <string>
+# include "WrongAnimal.hpp"
 
-class Cat : public Animal
+class WrongCat : public WrongAnimal
 {
-	private:
-	Brain *_brain;
-
 	public:
 	//constructors and destructors
-	Cat();
-	Cat(const Cat& other);
-	~Cat();
+	WrongCat();
+	WrongCat(const WrongCat& other);
+	~WrongCat();
 	//overloads
-	Cat& operator=(const Cat& rhs);
-
-	void	makeSound(void) const;
-	Brain	*getBrainAddress(void) const;
+	WrongCat& operator=(const WrongCat& rhs);
+	void makeSound(void) const;
 };
 #endif

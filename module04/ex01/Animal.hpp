@@ -6,7 +6,7 @@
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 18:14:25 by pgros             #+#    #+#             */
-/*   Updated: 2023/05/08 18:09:26 by pgros            ###   ########.fr       */
+/*   Updated: 2023/05/09 12:29:17 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ class Animal
 	Animal& operator=(const Animal& rhs);
 
 	virtual void	makeSound(void) const;
-	virtual Brain	*getBrainAddress(void) const = 0;
 	std::string		getType(void) const;
 };
 #endif

@@ -6,7 +6,7 @@
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 11:19:33 by pgros             #+#    #+#             */
-/*   Updated: 2023/05/08 18:08:40 by pgros            ###   ########.fr       */
+/*   Updated: 2023/05/09 12:29:41 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ class Dog : public Animal
 	//overloads
 	Dog& operator=(const Dog& rhs);
 
-	void makeSound(void) const;
-	Brain		*getBrainAddress(void) const;
+	void	makeSound(void) const;
+	Brain	*getBrainAddress(void) const;
 
 };
 #endif

@@ -6,7 +6,7 @@
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 18:23:13 by pgros             #+#    #+#             */
-/*   Updated: 2023/05/09 12:29:28 by pgros            ###   ########.fr       */
+/*   Updated: 2023/05/08 18:08:36 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,6 @@ class Cat : public Animal
 	Cat& operator=(const Cat& rhs);
 
 	void	makeSound(void) const;
-	Brain	*getBrainAddress(void) const;
+	Brain			*getBrainAddress(void) const;
 };
 #endif

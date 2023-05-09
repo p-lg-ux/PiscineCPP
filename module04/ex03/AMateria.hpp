@@ -1,36 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.hpp                                            :+:      :+:    :+:   */
+/*   AMateria.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/28 18:23:13 by pgros             #+#    #+#             */
-/*   Updated: 2023/05/09 12:29:28 by pgros            ###   ########.fr       */
+/*   Created: 2023/05/09 15:32:42 by pgros             #+#    #+#             */
+/*   Updated: 2023/05/09 15:37:49 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CAT_HPP
-# define CAT_HPP
-# include "Animal.hpp"
-# include "Brain.hpp"
-# include <iostream>
+#ifndef AMATERIA_HPP
+# define AMATERIA_HPP
+
 # include <string>
+# include <iostream>
+# include "ICharacter.hpp"
 
-class Cat : public Animal
+class AMateria
 {
-	private:
-	Brain *_brain;
-
+	protected:
+		std::string	type;
 	public:
-	//constructors and destructors
-	Cat();
-	Cat(const Cat& other);
-	~Cat();
-	//overloads
-	Cat& operator=(const Cat& rhs);
-
-	void	makeSound(void) const;
-	Brain	*getBrainAddress(void) const;
+		AMateria();
+		AMateria(const AMateria &other);
+		AMateria(std::string const & type);
+		virtual ~AMateria();
+		AMateria& operator=(const AMateria &rhs);
+		std::string const & getType() const; //Returns the materia type
+		virtual AMateria* clone() const = 0;
+		virtual void use(ICharacter& target);
 };
+
 #endif
