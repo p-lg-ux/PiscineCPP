@@ -6,7 +6,7 @@
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 15:18:54 by pgros             #+#    #+#             */
-/*   Updated: 2023/05/10 16:44:33 by pgros            ###   ########.fr       */
+/*   Updated: 2023/05/12 17:07:05 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,23 @@
 
 Ice::Ice() : AMateria("ice")
 {
-	std::cout << "Default constructor of Ice called." << std::endl;
+	std::cout << GREEN << "Default constructor of Ice called." << RESET << std::endl;
 }
 
 Ice::Ice(const Ice &other) : AMateria(other)
 {
-	std::cout << "Copy constructor of Ice called." << std::endl;
+	std::cout << GREEN << "Copy constructor of Ice called." << RESET << std::endl;
 }
 
 Ice::~Ice()
 {
-	std::cout << "Destructor of Ice called." << std::endl;
+	std::cout << GREEN << "Destructor of Ice called." << RESET << std::endl;
 }
 
 Ice& Ice::operator=(const Ice &rhs)
 {
-	_type = rhs._type;
+	_type = rhs.getType();
+	return (*this);
 }
 
 AMateria* Ice::clone() const

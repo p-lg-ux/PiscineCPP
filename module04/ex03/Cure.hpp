@@ -6,7 +6,7 @@
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 15:40:45 by pgros             #+#    #+#             */
-/*   Updated: 2023/05/10 15:10:57 by pgros            ###   ########.fr       */
+/*   Updated: 2023/05/12 16:58:59 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,13 @@
 
 class Cure : public AMateria
 {
-	Cure();
-	Cure(const Cure& other);
-	~Cure();
-	Cure &operator=(const Cure &rhs);
-	AMateria* clone() const;
-	void use(ICharacter& target);
+	public:
+		Cure();
+		Cure(const Cure& other);
+		~Cure();
+		Cure &operator=(const Cure &rhs);
+		AMateria* clone() const;
+		void use(ICharacter& target);
 };
 
 #endif

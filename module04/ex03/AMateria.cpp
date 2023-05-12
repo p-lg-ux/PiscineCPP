@@ -6,7 +6,7 @@
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 15:35:35 by pgros             #+#    #+#             */
-/*   Updated: 2023/05/10 15:22:22 by pgros            ###   ########.fr       */
+/*   Updated: 2023/05/12 20:22:21 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,33 +25,39 @@ public:
 
 AMateria::AMateria()
 {
-	std::cout << "Default constructor of AMateria called." << std::endl;
+	std::cout << GREEN << "Default constructor of AMateria called." << RESET << std::endl;
 	_type = "";
 }
 
-AMateria::AMateria(const AMateria &other)
+AMateria::AMateria(const AMateria &other) : _type(other.getType())
 {
-	std::cout << "Copy constructor of AMateria called." << std::endl;
-	_type = other._type;
+	std::cout << GREEN << "Copy constructor of AMateria called." << RESET << std::endl;
 }
 
-AMateria::AMateria(std::string const & type)
+AMateria::AMateria(std::string const & type) : _type(type)
 {
-	std::cout << "String constructor of AMateria called." << std::endl;
-	_type = type;
+	std::cout << GREEN << "String constructor of AMateria called." << RESET << std::endl;
 }
 
 AMateria::~AMateria()
 {
-	std::cout << "Default destructor of AMateria called." << std::endl;
+	std::cout << GREEN << "Destructor of AMateria called." << RESET << std::endl;
 }
 
 AMateria& AMateria::operator=(const AMateria &rhs)
 {
-	_type = rhs._type;
+	_type = rhs.getType();
+	return (*this);
 }
 
 std::string const & AMateria::getType() const
 {
 	return (_type);
+}
+
+
+void AMateria::use(ICharacter& target)
+{
+	std::cout << "* use Materia against " << target.getName() << " *" << std::endl;
+	return;
 }

@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Ice.hpp                                            :+:      :+:    :+:   */
+/*   IMateriaSource.hpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/09 15:38:32 by pgros             #+#    #+#             */
-/*   Updated: 2023/05/12 16:58:47 by pgros            ###   ########.fr       */
+/*   Created: 2023/05/12 14:47:08 by pgros             #+#    #+#             */
+/*   Updated: 2023/05/12 16:56:33 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ICE_HPP
-# define ICE_HPP
+#ifndef IMATERIASOURCE_HPP
+# define IMATERIASOURCE_HPP
 
 # include <string>
 # include <iostream>
 # include "AMateria.hpp"
 
-class Ice : public AMateria
+# define GREEN "\x1b[32m"
+# define RESET "\x1b[0m"
+
+class IMateriaSource
 {
 	public:
-		Ice();
-		Ice(const Ice& other);
-		~Ice();
-		Ice &operator=(const Ice &rhs);
-		AMateria* clone() const;
-		void use(ICharacter& target);
+		virtual ~IMateriaSource() {}
+		virtual void learnMateria(AMateria*) = 0;
+		virtual AMateria* createMateria(std::string const & type) = 0;
 };
 
 #endif

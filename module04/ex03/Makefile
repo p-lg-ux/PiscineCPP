@@ -6,7 +6,7 @@
 #    By: pgros <pgros@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/10 14:59:24 by pgros             #+#    #+#              #
-#    Updated: 2023/05/10 14:59:56 by pgros            ###   ########.fr        #
+#    Updated: 2023/05/12 17:19:19 by pgros            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,22 +14,22 @@ NAME = test_03
 
 CPP_C = c++
 
-CPP_FLAGS = -Wall -Wextra -Werror -std=c++98
+CPP_FLAGS = -Wall -Wextra -Werror -std=c++98 -g3
 
 SRC = 	main.cpp \
-		Animal.cpp \
-		Dog.cpp \
-		Cat.cpp \
-		WrongAnimal.cpp \
-		WrongCat.cpp \
-		Brain.cpp
+		AMateria.cpp \
+		Cure.cpp \
+		Ice.cpp \
+		Character.cpp \
+		MateriaSource.cpp
 
-INC =	Animal.hpp \
-		Cat.hpp \
-		Dog.hpp \
-		WrongAnimal.hpp \
-		WrongCat.hpp \
-		Brain.hpp
+INC =	AMateria.hpp \
+		Cure.hpp \
+		Ice.hpp \
+		Character.hpp \
+		ICharacter.hpp \
+		IMateriaSource.hpp \
+		MateriaSource.hpp
 
 OBJ = $(SRC:%.cpp=%.o)
 

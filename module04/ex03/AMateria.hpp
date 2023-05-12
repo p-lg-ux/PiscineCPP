@@ -6,7 +6,7 @@
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 15:32:42 by pgros             #+#    #+#             */
-/*   Updated: 2023/05/10 15:12:21 by pgros            ###   ########.fr       */
+/*   Updated: 2023/05/12 17:07:55 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@
 # include <string>
 # include <iostream>
 # include "ICharacter.hpp"
+# define GREEN "\x1b[32m"
+# define RESET "\x1b[0m"
+
+class ICharacter;
 
 class AMateria
 {
