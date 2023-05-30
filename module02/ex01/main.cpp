@@ -6,7 +6,7 @@
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 15:41:24 by pgros             #+#    #+#             */
-/*   Updated: 2023/04/12 19:06:05 by pgros            ###   ########.fr       */
+/*   Updated: 2023/05/15 17:23:13 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int main( void ) {
 	Fixed a;
-	Fixed const b( -10 );
+	Fixed const b( 10 );
 	Fixed const c( 42.42f );
 	Fixed const d( b );
 	

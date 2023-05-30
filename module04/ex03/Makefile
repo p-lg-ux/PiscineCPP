@@ -6,7 +6,7 @@
 #    By: pgros <pgros@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/10 14:59:24 by pgros             #+#    #+#              #
-#    Updated: 2023/05/12 17:19:19 by pgros            ###   ########.fr        #
+#    Updated: 2023/05/15 17:15:28 by pgros            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = test_03
 
 CPP_C = c++
 
-CPP_FLAGS = -Wall -Wextra -Werror -std=c++98 -g3
+CPP_FLAGS = -Wall -Wextra -Werror -std=c++98
 
 SRC = 	main.cpp \
 		AMateria.cpp \

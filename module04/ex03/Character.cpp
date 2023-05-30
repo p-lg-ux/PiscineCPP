@@ -6,7 +6,7 @@
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 15:54:38 by pgros             #+#    #+#             */
-/*   Updated: 2023/05/12 17:27:28 by pgros            ###   ########.fr       */
+/*   Updated: 2023/05/15 17:06:23 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ Character::Character()
 Character::Character(const Character &other)
 {
 	std::cout << GREEN << "Copy constructor of Character called." << RESET << std::endl;
+	_name = other.getName();
 	for (int i=0; i<4; i++)
 	{
 		if (other.getItem(i) == NULL)
@@ -71,11 +72,12 @@ Character::~Character()
 			delete _inventory[i];
 		_inventory[i] = NULL;
 	}
-	std::cout << GREEN << "Destructor of Character called." << RESET << std::endl;
+	std::cout << GREEN << "Destructor of Character " << getName() << " called." << RESET << std::endl;
 }
 
 Character&	Character::operator=(const Character &rhs)
 {
+	std::cout << GREEN << "Assignment of Character " << getName() << " called." << RESET << std::endl;
 	_name = rhs.getName();
 	for (int i=0; i<4; i++)
 	{

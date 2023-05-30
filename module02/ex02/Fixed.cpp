@@ -6,7 +6,7 @@
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 15:42:28 by pgros             #+#    #+#             */
-/*   Updated: 2023/04/14 16:00:03 by pgros            ###   ########.fr       */
+/*   Updated: 2023/05/15 18:11:35 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ int	Fixed::toInt(void) const
 
 float	Fixed::toFloat(void) const
 {
+	/*
 	float	f = 0;
 	float	power = 1;
 	int		raw = this->getRawBits();
@@ -83,6 +84,8 @@ float	Fixed::toFloat(void) const
 		power *= 2;
 	}
 	return (f * sign);
+	*/
+	return (((float) this->getRawBits()) / (1 << decimalNbOfBits));
 }
 
 //overloads
@@ -157,6 +160,11 @@ Fixed	Fixed::operator*(const Fixed& rhs) const
 
 Fixed	Fixed::operator/(const Fixed& rhs) const
 {
+	if (rhs == 0)
+	{
+		std::cerr << "Division by zero not allowed." << std::endl;
+		return (*this);
+	}
 	Fixed res(this->toFloat() / rhs.toFloat());
 	return (res);
 }

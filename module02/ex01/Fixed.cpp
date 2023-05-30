@@ -6,7 +6,7 @@
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 15:42:28 by pgros             #+#    #+#             */
-/*   Updated: 2023/04/12 19:22:35 by pgros            ###   ########.fr       */
+/*   Updated: 2023/05/15 17:21:50 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ int	Fixed::toInt(void) const
 
 float	Fixed::toFloat(void) const
 {
+	/*
 	float	f = 0;
 	float	power = 1;
 	int		raw = this->getRawBits();
@@ -91,6 +92,8 @@ float	Fixed::toFloat(void) const
 		power *= 2;
 	}
 	return (f * sign);
+	*/
+	return (((float) this->getRawBits()) / (1 << decimalNbOfBits));
 }
 
 std::ostream	&operator<<(std::ostream &os, const Fixed &val)
