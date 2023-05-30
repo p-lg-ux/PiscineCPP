@@ -6,7 +6,7 @@
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 16:40:40 by pgros             #+#    #+#             */
-/*   Updated: 2023/05/30 18:02:27 by pgros            ###   ########.fr       */
+/*   Updated: 2023/05/30 20:59:19 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ class Form
 	const std::string 	&getName() const;
 	int					getSignGrade() const;
 	int					getExecGrade() const;
-	bool				getIsSigned() const;
+	bool				isSigned() const;
 
 	//other member functions
 	void	beSigned(Bureaucrat guy);

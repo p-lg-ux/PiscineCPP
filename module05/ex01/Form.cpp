@@ -6,7 +6,7 @@
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 16:40:50 by pgros             #+#    #+#             */
-/*   Updated: 2023/05/30 18:05:57 by pgros            ###   ########.fr       */
+/*   Updated: 2023/05/30 21:00:09 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,24 +57,64 @@ std::ostream &operator<<(std::ostream &os, const Form &val);
 */
 
 //constructors and destructors
-Form::Form()
+Form::Form() : _sign_grade(1), _exec_grade(1)
 {
+	_is_signed = false;
 	std::cout << GREEN << "Default constructor of Form called." << RESET << std::endl;
 }
 
-Form::Form(const Form& other)
+Form::Form(const Form& other) : 
+	_name(other.getName()),
+	_sign_grade(other.getSignGrade()),
+	_exec_grade(other.getExecGrade())
 {
-(void)other;
+	_is_signed = false;
 	std::cout << GREEN << "Copy constructor of Form called." << RESET << std::endl;
+}
+
+Form::Form(std::string name, int sign_grade, int exec_grade) :
+	_name(name),
+	_sign_grade(sign_grade),
+	_exec_grade(exec_grade)
+{
+	_is_signed = false;
+	std::cout << GREEN << "Parameters constructor of Form called." << RESET << std::endl;
 }
 
 Form::~Form()
 {
 	std::cout << GREEN << "Destructor of Form called." << RESET << std::endl;
 }
+
 //overloads
 Form& Form::operator=(const Form& rhs)
 {
-(void)rhs;
+	(void)rhs;
 	return *this;
+}
+
+//getters
+const std::string 	&Form::getName() const
+{
+	return (_name);
+}
+
+int	Form::getSignGrade() const
+{
+	return (_sign_grade);
+}
+
+int	Form::getExecGrade() const
+{
+	return (_exec_grade);
+}
+
+bool Form::isSigned() const
+{
+	return (_is_signed);
+}
+
+void Form::beSigned(Bureaucrat guy)
+{
+	
 }
