@@ -6,20 +6,22 @@
 #    By: pgros <pgros@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/30 13:49:48 by pgros             #+#    #+#              #
-#    Updated: 2023/05/30 16:13:21 by pgros            ###   ########.fr        #
+#    Updated: 2023/06/01 20:16:37 by pgros            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = Bureaucrat
+NAME = Bureaucrats01
 
 CPP_C = c++
 
 CPP_FLAGS = -Wall -Wextra -Werror -std=c++98
 
 SRC = 	main.cpp \
-		Bureaucrat.cpp
+		Bureaucrat.cpp \
+		Form.cpp
 
-INC =	Bureaucrat.hpp
+INC =	Bureaucrat.hpp \
+		Form.hpp
 
 OBJ = $(SRC:%.cpp=%.o)
 

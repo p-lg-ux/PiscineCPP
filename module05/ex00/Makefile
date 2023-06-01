@@ -6,11 +6,11 @@
 #    By: pgros <pgros@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/30 13:49:48 by pgros             #+#    #+#              #
-#    Updated: 2023/05/30 16:13:21 by pgros            ###   ########.fr        #
+#    Updated: 2023/06/01 20:16:42 by pgros            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = Bureaucrat
+NAME = Bureaucrats00
 
 CPP_C = c++
 

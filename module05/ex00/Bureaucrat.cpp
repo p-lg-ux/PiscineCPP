@@ -6,7 +6,7 @@
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 15:42:21 by pgros             #+#    #+#             */
-/*   Updated: 2023/05/30 16:38:56 by pgros            ###   ########.fr       */
+/*   Updated: 2023/06/01 20:00:03 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,12 +78,12 @@ void Bureaucrat::downgrade()
 
 const char* Bureaucrat::GradeTooHighException::what() const throw()
 {
-	return ("Grade is too high.");
+	return ("Bureaucrat exception: Grade is too high.");
 }
 
 const char* Bureaucrat::GradeTooLowException::what() const throw()
 {
-	return ("Grade is too low.");
+	return ("Bureaucrat exception: Grade is too low.");
 }
 
 std::ostream &operator<<(std::ostream &os, const Bureaucrat& val)

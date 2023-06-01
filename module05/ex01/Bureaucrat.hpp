@@ -6,7 +6,7 @@
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 13:50:23 by pgros             #+#    #+#             */
-/*   Updated: 2023/05/30 16:38:44 by pgros            ###   ########.fr       */
+/*   Updated: 2023/06/01 19:57:29 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,12 @@
 # include <string>
 # include <iostream>
 # include <exception>
-# define GREEN "\x1b[32m"
-# define RESET "\x1b[0m"
+# include "Form.hpp"
+# define GREEN	"\x1b[32m"
+# define RED	"\x1b[31m"
+# define RESET	"\x1b[0m"
+
+class Form;
 
 class Bureaucrat
 {
@@ -35,6 +39,7 @@ class Bureaucrat
 	int 				getGrade() const;
 	void				upgrade();
 	void				downgrade();
+	void				signForm(Form &form);
 	
 	class GradeTooHighException : public std::exception
 	{

@@ -6,7 +6,7 @@
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 16:13:34 by pgros             #+#    #+#             */
-/*   Updated: 2023/05/30 16:38:38 by pgros            ###   ########.fr       */
+/*   Updated: 2023/06/01 19:58:54 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int main(void)
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << e.what() << std::endl;
+		std::cerr << RED << e.what() << RESET << std::endl;
 	}
 	try
 	{
@@ -36,7 +36,7 @@ int main(void)
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << e.what() << std::endl;
+		std::cerr << RED << e.what() << RESET << std::endl;
 	}
 	try
 	{
@@ -44,7 +44,7 @@ int main(void)
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << e.what() << std::endl;
+		std::cerr << RED << e.what() << RESET << std::endl;
 	}
 	try
 	{
@@ -52,7 +52,7 @@ int main(void)
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << e.what() << std::endl;
+		std::cerr << RED << e.what() << RESET << std::endl;
 	}
-	
+	return (0);
 }

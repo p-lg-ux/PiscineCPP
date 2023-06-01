@@ -6,7 +6,7 @@
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 15:42:21 by pgros             #+#    #+#             */
-/*   Updated: 2023/05/30 16:38:56 by pgros            ###   ########.fr       */
+/*   Updated: 2023/06/01 19:51:10 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,14 +76,37 @@ void Bureaucrat::downgrade()
 		_grade++;
 }
 
+void Bureaucrat::signForm(Form &form)
+{
+	if (form.isSigned())
+	{
+		std::cout << this->getName();
+		std::cout << " couldn't sign " << form.getName();
+		std::cout << " because it's already signed." << std::endl;
+	}
+	try
+	{
+		form.beSigned(*this);
+		std::cout << this->getName();
+		std::cout << " signed " << form.getName() << "." << std::endl;
+	}
+	catch(const Form::GradeTooLowException &e)
+	{
+		std::cout << this->getName();
+		std::cout << " couldn't sign " << form.getName();
+		std::cout << " because her/his grade was too low." << std::endl;
+	}
+}
+
+
 const char* Bureaucrat::GradeTooHighException::what() const throw()
 {
-	return ("Grade is too high.");
+	return ("Bureaucrat exception: grade is too high.");
 }
 
 const char* Bureaucrat::GradeTooLowException::what() const throw()
 {
-	return ("Grade is too low.");
+	return ("Bureaucrat exception: grade is too low.");
 }
 
 std::ostream &operator<<(std::ostream &os, const Bureaucrat& val)

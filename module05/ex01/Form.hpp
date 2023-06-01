@@ -6,7 +6,7 @@
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 16:40:40 by pgros             #+#    #+#             */
-/*   Updated: 2023/05/30 20:59:19 by pgros            ###   ########.fr       */
+/*   Updated: 2023/06/01 17:52:07 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 # include <iostream>
 # include <string>
 # include "Bureaucrat.hpp"
+
+class Bureaucrat;
 
 class Form
 {
@@ -41,7 +43,7 @@ class Form
 	bool				isSigned() const;
 
 	//other member functions
-	void	beSigned(Bureaucrat guy);
+	void	beSigned(Bureaucrat &guy);
 
 	//exceptions
 	class GradeTooHighException : public std::exception
