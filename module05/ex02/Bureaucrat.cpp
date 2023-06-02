@@ -6,7 +6,7 @@
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 15:42:21 by pgros             #+#    #+#             */
-/*   Updated: 2023/06/02 16:42:28 by pgros            ###   ########.fr       */
+/*   Updated: 2023/06/02 16:42:00 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void Bureaucrat::downgrade()
 		_grade++;
 }
 
-void Bureaucrat::signForm(Form &form)
+void Bureaucrat::signForm(AForm &form)
 {
 	if (form.isSigned())
 	{
@@ -91,7 +91,7 @@ void Bureaucrat::signForm(Form &form)
 		std::cout << this->getName();
 		std::cout << " signed " << form.getName() << "." << std::endl;
 	}
-	catch(const Form::GradeTooLowException &e)
+	catch(const AForm::GradeTooLowException &e)
 	{
 		std::cerr << this->getName();
 		std::cerr << " couldn't sign " << form.getName();
@@ -99,6 +99,27 @@ void Bureaucrat::signForm(Form &form)
 	}
 }
 
+void Bureaucrat::executeForm(AForm &form)
+{
+	try
+	{
+		form.execute(*this);
+		std::cout << this->getName();
+		std::cout << " executed " << form.getName() << "." << std::endl;
+	}
+	catch(const AForm::GradeTooLowException &e)
+	{
+		std::cerr << this->getName();
+		std::cerr << " couldn't execute " << form.getName();
+		std::cerr << " because her/his grade was too low." << std::endl;
+	}
+	catch(const AForm::FormNotSignedException &e)
+	{
+		std::cerr << this->getName();
+		std::cerr << " couldn't execute " << form.getName();
+		std::cerr << " because the form was not signed." << std::endl;
+	}
+}
 
 const char* Bureaucrat::GradeTooHighException::what() const throw()
 {
