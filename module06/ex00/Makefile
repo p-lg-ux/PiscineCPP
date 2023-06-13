@@ -6,7 +6,7 @@
 #    By: pgros <pgros@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/08 13:47:30 by pgros             #+#    #+#              #
-#    Updated: 2023/06/08 16:44:14 by pgros            ###   ########.fr        #
+#    Updated: 2023/06/13 18:24:56 by pgros            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,12 +14,13 @@ NAME = convert
 
 CPP_C = c++
 
-CPP_FLAGS = -Wall -Wextra -Werror -std=c++98
+CPP_FLAGS = -Wall -Wextra -Werror #-std=c++98
 
 SRC = 	main.cpp \
 		ScalarConverter.cpp
 
-INC =	ScalarConverter.hpp
+INC =	ScalarConverter.hpp \
+		macros.hpp
 
 OBJ = $(SRC:%.cpp=%.o)
 
