@@ -6,7 +6,7 @@
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 15:38:01 by pgros             #+#    #+#             */
-/*   Updated: 2023/06/18 16:19:45 by pgros            ###   ########.fr       */
+/*   Updated: 2023/06/18 16:50:16 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,22 @@
 
 int main(void)
 {
-	Data		data;
+	Data		dataVal;
 	Data		*ptr;
 	uintptr_t	raw;
 
-	data.charAtt = 'a';
-	data.strAtt = "HelloWorld";
-	std::cout << "data address: " << &data << std::endl;
-	std::cout << "data attributes: " << data.strAtt << " " << data.charAtt << " " << data.intAtt << std::endl;
+	dataVal.charAtt = 'a';
+	dataVal.strAtt = "HelloWorld";
+	dataVal.intAtt = 42;
+	std::cout << "dataVal address =\t\t" << &dataVal << std::endl;
+	std::cout << "dataVal attributes =\t\t" << dataVal.strAtt << " " << dataVal.charAtt << " " << dataVal.intAtt << std::endl;
 
-	raw = Serializer::serialize(&data);
-	std::cout << std::endl << "serialized uintptr_t raw = " << raw << std::endl;
-	std::cout << "serialized uintptr_t raw hexa = " << std::hex << raw << std::endl;
+	raw = Serializer::serialize(&dataVal);
+	std::cout << std::endl << "serialized uintptr_t raw =\t" << raw << std::endl;
+	std::cout << "serialized uintptr_t raw =\t" << std::showbase << std::hex << raw << std::endl;
 	ptr = Serializer::deserialize(raw);
-	std::cout << std::endl << "deserialized Data pointer = " << ptr << std::endl;
-	std::cout << "data pointer = " << &data << std::endl;
+	std::cout << std::endl << "deserialized Data pointer =\t" << ptr << std::endl;
+	std::cout << "original dataVal address =\t" << &dataVal << std::endl;
 
 	return (0);
 }
