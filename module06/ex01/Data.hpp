@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Data.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/08 16:40:57 by pgros             #+#    #+#             */
-/*   Updated: 2023/06/18 15:35:09 by pgros            ###   ########.fr       */
+/*   Created: 2023/06/18 15:40:27 by pgros             #+#    #+#             */
+/*   Updated: 2023/06/18 15:42:42 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScalarConverter.hpp"
+#ifndef DATA_HPP
+# define DATA_HPP
+# include <string>
 
-int main(int argc, char** argv)
+struct Data
 {
-	std::string str;
-	if (argc != 2)
-	{
-		std::cerr << "One argument required." << std::endl;
-		return (1);
-	}
-	ScalarConverter::convert(argv[1]);
-	return (0);
-}
+	/* data */
+	std::string	strAtt;
+	int			intAtt;
+	char		charAtt;
+};
+
+
+#endif
