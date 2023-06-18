@@ -6,7 +6,7 @@
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 13:53:32 by pgros             #+#    #+#             */
-/*   Updated: 2023/06/15 17:51:57 by pgros            ###   ########.fr       */
+/*   Updated: 2023/06/18 15:16:51 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,10 @@ class ScalarConverter
 	
 	public:
 	
-	static void     convert(std::string literal);
 	static type_t   detectType(std::string literal);
+	static type_t	detectNumberType(std::string &literal);	
+	
+	static void     convert(std::string literal);
 	static void     convertFromChar(std::istringstream &iss);
 	static void     convertFromInt(std::istringstream &iss);
 	static void     convertFromFloat(std::istringstream &iss);

@@ -6,7 +6,7 @@
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 13:55:07 by pgros             #+#    #+#             */
-/*   Updated: 2023/06/15 17:56:07 by pgros            ###   ########.fr       */
+/*   Updated: 2023/06/18 15:27:51 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@ ScalarConverter::ScalarConverter(ScalarConverter const &other)
 }
 
 ScalarConverter::~ScalarConverter()
-{
-}
+{}
 
 ScalarConverter &ScalarConverter::operator=(ScalarConverter const &rhs)
 {
@@ -36,10 +35,38 @@ ScalarConverter &ScalarConverter::operator=(ScalarConverter const &rhs)
 	return (*this);
 }
 
+type_t	ScalarConverter::detectNumberType(std::string &literal)
+{
+	int		i;
+	bool	point = false;
+
+	for (i=0;i < static_cast<int>(literal.length());i++)
+	{
+		if (literal[i] == '.' && !point && std::isdigit(literal[i + 1]))
+		{
+			point = true;
+			continue;
+		}
+		else if (std::isdigit(literal[i]))
+			continue;
+		else
+			break;
+	}
+	if (i == static_cast<int>(literal.length()))
+	{
+		if (point)
+			return (DOUBLE);
+		else
+			return (INT);
+	}
+	if (i == static_cast<int>((literal.length() - 1)) && point
+		&& literal[literal.length() - 1] == 'f')
+		return (FLOAT);
+	return (NONE);
+}
+
 type_t	ScalarConverter::detectType(std::string literal)
 {
-	bool	point = false;
-	int		i;
 
 	if (literal.empty())
 		return (NONE);
@@ -51,32 +78,7 @@ type_t	ScalarConverter::detectType(std::string literal)
 		return (CHAR);
 	if (literal[0] == '-')
 		literal = literal.erase(0, 1);
-	for (i=0;i<(int)literal.length();i++)
-	{
-		if (literal[i] == '.'
-			&& !point
-			&& std::isdigit(literal[i + 1]))
-		{
-			point = true;
-			continue;
-		}
-		else if (std::isdigit(literal[i]))
-			continue;
-		else
-			break;
-	}
-	if (i == (int)literal.length())
-	{
-		if (point)
-			return (DOUBLE);
-		else
-			return (INT);
-	}
-	if (i == (int)(literal.length() - 1)
-		&& point
-		&& literal[literal.length() - 1] == 'f')
-		return (FLOAT);
-	return (NONE);
+	return (detectNumberType(literal));
 }
 
 void	ScalarConverter::convertFromChar(std::istringstream &iss)
@@ -99,8 +101,7 @@ void	ScalarConverter::convertFromInt(std::istringstream &iss)
 		std::cerr << "Type not recognized." << std::endl;
 		return;
 	}
-	if (*_intVal >= std::numeric_limits<char>::min()
-		&& *_intVal <= std::numeric_limits<char>::max())
+	if (*_intVal >= std::numeric_limits<char>::min() && *_intVal <= std::numeric_limits<char>::max())
 		_charVal = new char(static_cast<char>(*_intVal));
 	_floatVal = new float(static_cast<float>(*_intVal));
 	_doubleVal = new double(static_cast<double>(*_intVal));
@@ -109,13 +110,52 @@ void	ScalarConverter::convertFromInt(std::istringstream &iss)
 
 void	ScalarConverter::convertFromFloat(std::istringstream &iss)
 {
-	(void)iss;
+	_floatVal = new float;
+	if (iss.str() == "+inff")
+		*_floatVal = std::numeric_limits<float>::infinity();
+	else if (iss.str() == "-inff")
+		*_floatVal = -std::numeric_limits<float>::infinity();
+	else if (iss.str() == "nanf")
+		*_floatVal = std::numeric_limits<float>::quiet_NaN();
+	else
+		iss >> *_floatVal;
+	if (iss.fail())
+	{
+		std::cerr << "Type not recognized." << std::endl;
+		return;
+	}
+	if (*_floatVal >= std::numeric_limits<char>::min() && *_floatVal <= std::numeric_limits<char>::max())
+		_charVal = new char(static_cast<char>(*_floatVal));
+	if (*_floatVal >= std::numeric_limits<int>::min() && *_floatVal <= std::numeric_limits<int>::max())
+		_intVal = new int(static_cast<int>(*_floatVal));
+	_doubleVal = new double(static_cast<double>(*_floatVal));
+	display();
 }
 
 void	ScalarConverter::convertFromDouble(std::istringstream &iss)
 {
-	(void)iss;
+	_doubleVal = new double;
+	if (iss.str() == "+inf")
+		*_doubleVal = std::numeric_limits<double>::infinity();
+	else if (iss.str() == "-inf")
+		*_doubleVal = -std::numeric_limits<double>::infinity();
+	else if (iss.str() == "nan")
+		*_doubleVal = std::numeric_limits<double>::quiet_NaN();
+	else
+		iss >> *_doubleVal;
+	if (iss.fail())
+	{
+		std::cerr << "Type not recognized." << std::endl;
+		return;
+	}
+	if (*_doubleVal >= std::numeric_limits<char>::min() && *_doubleVal <= std::numeric_limits<char>::max())
+		_charVal = new char(static_cast<char>(*_doubleVal));
+	if (*_doubleVal >= std::numeric_limits<int>::min() && *_doubleVal <= std::numeric_limits<int>::max())
+		_intVal = new int(static_cast<int>(*_doubleVal));
+	_floatVal = new float(static_cast<float>(*_doubleVal));
+	display();
 }
+
 void	ScalarConverter::convertNone(std::istringstream &iss)
 {
 	(void)iss;
@@ -179,6 +219,7 @@ void ScalarConverter::displayInt()
 	else
 		std::cout << *_intVal << std::endl;
 }
+
 void ScalarConverter::displayFloat()
 {
 	std::cout << "float: ";
@@ -187,6 +228,7 @@ void ScalarConverter::displayFloat()
 	else
 		std::cout << std::fixed << std::setprecision(1) << *_floatVal << "f" << std::endl;
 }
+
 void ScalarConverter::displayDouble()
 {
 	std::cout << "double: ";
