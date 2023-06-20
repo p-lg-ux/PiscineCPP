@@ -6,7 +6,7 @@
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 15:38:01 by pgros             #+#    #+#             */
-/*   Updated: 2023/06/18 16:50:16 by pgros            ###   ########.fr       */
+/*   Updated: 2023/06/20 18:34:16 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,11 @@ int main(void)
 
 	raw = Serializer::serialize(&dataVal);
 	std::cout << std::endl << "serialized uintptr_t raw =\t" << raw << std::endl;
-	std::cout << "serialized uintptr_t raw =\t" << std::showbase << std::hex << raw << std::endl;
+	std::cout << "serialized uintptr_t raw =\t" << std::showbase << std::hex << raw << std::dec << std::endl;
 	ptr = Serializer::deserialize(raw);
 	std::cout << std::endl << "deserialized Data pointer =\t" << ptr << std::endl;
 	std::cout << "original dataVal address =\t" << &dataVal << std::endl;
+	std::cout << "Data pointer attributes =\t" << ptr->strAtt << " " << ptr->charAtt << " " << ptr->intAtt << std::endl;
 
 	return (0);
 }
