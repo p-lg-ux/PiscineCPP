@@ -6,7 +6,7 @@
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 19:46:27 by pgros             #+#    #+#             */
-/*   Updated: 2023/06/22 22:28:41 by pgros            ###   ########.fr       */
+/*   Updated: 2023/06/23 17:14:22 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,13 @@ class Array
 	{
 		_n = n;
 		_array = new T[n];
+		for (unsigned int i=0;i<_n;i++)
+			_array[i] = 0;
 		std::cout << "Parameters constructor of Array called." << std::endl;
 	};
 	
 	Array<T>(const Array<T>& other) : _array(NULL), _n(0)
 	{
-		// _n  = other.size();
-		// _array = new T[other.size()];
-		// for (int i=0;i<other.size();i++)
-		// 	_array[i] = other[i];
 		*this = other;
 		std::cout << "Copy constructor of Array called." << std::endl;
 	};

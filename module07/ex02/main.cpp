@@ -6,7 +6,7 @@
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 19:50:48 by pgros             #+#    #+#             */
-/*   Updated: 2023/06/22 22:34:53 by pgros            ###   ########.fr       */
+/*   Updated: 2023/06/23 17:15:29 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,23 @@
 #include <iostream>
 # define BOLD	"\033[1;39m"
 # define YELLOW	"\033[33m"
+# define BLUE	"\033[34m"
 # define RESET	"\033[0m"
 
 class A
 {
 	public:
 	int _a;
-	A() : _a(0){};
+	A() {};
 	A(int a) : _a(a){};
 	A(A const &other){*this = other;};
 	~A(){};
 	A& operator=(const A& rhs){_a  = rhs._a; return (*this);};
-	A& operator=(int val){_a  = val; return (*this);};
 };
 
 std::ostream& operator<<(std::ostream &os, const A& val)
 {
-	os << "_a = " << val._a;
+	os << "_a = " << val._a ;
 	return (os);
 }
 
@@ -160,3 +160,58 @@ int main(void)
 	}
 	return (0);
 }
+
+/*
+#include <cstdlib>
+
+#define MAX_VAL 750
+int main(int, char**)
+{
+    Array<int> numbers(MAX_VAL);
+    int* mirror = new int[MAX_VAL];
+    srand(time(NULL));
+    for (int i = 0; i < MAX_VAL; i++)
+    {
+        const int value = rand();
+        numbers[i] = value;
+        mirror[i] = value;
+    }
+    //SCOPE
+    {
+        Array<int> tmp = numbers;
+        Array<int> test(tmp);
+    }
+
+    for (int i = 0; i < MAX_VAL; i++)
+    {
+        if (mirror[i] != numbers[i])
+        {
+            std::cerr << "didn't save the same value!!" << std::endl;
+            return 1;
+        }
+    }
+    try
+    {
+        numbers[-2] = 0;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
+    try
+    {
+        numbers[MAX_VAL] = 0;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
+
+    for (int i = 0; i < MAX_VAL; i++)
+    {
+        numbers[i] = rand();
+    }
+    delete [] mirror;//
+    return 0;
+}
+*/
