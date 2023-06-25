@@ -6,7 +6,7 @@
 #    By: pgros <pgros@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/23 19:14:53 by pgros             #+#    #+#              #
-#    Updated: 2023/06/23 19:20:47 by pgros            ###   ########.fr        #
+#    Updated: 2023/06/25 20:45:10 by pgros            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ CPP_FLAGS = -Wall -Wextra -Werror -std=c++98
 
 SRC = 	main.cpp
 
-INC =	whatever.hpp
+INC =	easyfind.hpp
 
 OBJ = $(SRC:%.cpp=%.o)
 
