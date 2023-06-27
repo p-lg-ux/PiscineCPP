@@ -6,21 +6,13 @@
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 10:57:07 by pgros             #+#    #+#             */
-/*   Updated: 2023/06/26 16:23:58 by pgros            ###   ########.fr       */
+/*   Updated: 2023/06/27 17:42:47 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Span.hpp"
 #include <iostream>
 #include <algorithm>
-
-void printList(std::list<int> &L)
-{
-	std::cout << "{";
-	for (std::list<int>::iterator it = L.begin(); it != L.end(); it++)	
-		std::cout << *it << ", ";
-	std::cout << "};" << std::endl;
-}
 
 //constructors and destructors
 Span::Span()
@@ -63,6 +55,17 @@ void	Span::addNumber(int number)
 		throw SpanFullException();
 }
 
+void Span::addMultipleNumber(std::list<int>::const_iterator first, std::list<int>::const_iterator last)
+{
+	if (_L.size() == _N)
+		throw SpanFullException();
+	else if (_L.size() + std::distance(first, last) <= _N)
+		_L.insert(_L.end(), first, last);
+	else
+		throw NotEnoughSpaceException();
+}
+
+
 int		Span::shortestSpan() const
 {
 	std::list<int>	cpy = _L;
@@ -84,12 +87,17 @@ int		Span::longestSpan() const
 
 const char *Span::SpanFullException::what() const throw()
 {
-	return ("Can not add number, object Span is full.");
+	return ("Can not add number: Span object is full.");
+}
+
+const char *Span::NotEnoughSpaceException::what() const throw()
+{
+	return ("Can not add number: Span object does not have enough space left.");
 }
 
 const char *Span::TooFewElementsException::what() const throw()
 {
-	return ("There are not enough elements to find a span.");
+	return ("Can not find span: Span object only has 0 or 1 element.");
 }
 
 std::ostream&	operator<<(std::ostream &os, Span const & s)

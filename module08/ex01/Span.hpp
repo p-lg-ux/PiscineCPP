@@ -6,7 +6,7 @@
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 09:31:23 by pgros             #+#    #+#             */
-/*   Updated: 2023/06/26 16:25:37 by pgros            ###   ########.fr       */
+/*   Updated: 2023/06/27 17:40:48 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ class Span
 	unsigned int			get_N() const;
 	//functions
 	void addNumber(int number);
+	void addMultipleNumber(std::list<int>::const_iterator first, std::list<int>::const_iterator last);
 	int shortestSpan() const;
 	int longestSpan() const;
 	
@@ -43,23 +44,24 @@ class Span
 		virtual const char *what() const throw();
 	};
 
-	class TooFewElementsException : public std::exception{
+	class NotEnoughSpaceException : public std::exception{
 		virtual const char *what() const throw();
 	};
 
-	template<typename T>
-	void addNumber(typename T::iterator first, typename T::iterator last)
-	{
-		if (_L.size() + std::distance(first, last) <= _N)
-		{
-			for (;first!=last;first++)
-				_L.push_back(*first);
-		}
-		else
-			throw SpanFullException();
-	}
+	class TooFewElementsException : public std::exception{
+		virtual const char *what() const throw();
+	};
 };
 
 std::ostream&	operator<<(std::ostream &os, Span const & s);
+
+template<typename T>
+void printContainer(T& C)
+{
+	std::cout << "{";
+	for (typename T::iterator it = C.begin(); it != C.end(); it++)	
+		std::cout << *it << ", ";
+	std::cout << "};" << std::endl;
+}
 
 #endif
