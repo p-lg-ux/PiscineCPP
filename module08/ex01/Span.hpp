@@ -6,7 +6,7 @@
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 09:31:23 by pgros             #+#    #+#             */
-/*   Updated: 2023/06/27 17:40:48 by pgros            ###   ########.fr       */
+/*   Updated: 2023/06/28 13:13:37 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,13 @@ class Span
 
 std::ostream&	operator<<(std::ostream &os, Span const & s);
 
-template<typename T>
-void printContainer(T& C)
-{
-	std::cout << "{";
-	for (typename T::iterator it = C.begin(); it != C.end(); it++)	
-		std::cout << *it << ", ";
-	std::cout << "};" << std::endl;
-}
+// template<typename T>
+// void printContainer(T& C)
+// {
+// 	std::cout << "{";
+// 	for (typename T::iterator it = C.begin(); it != C.end(); it++)	
+// 		std::cout << *it << ", ";
+// 	std::cout << "};" << std::endl;
+// }
 
 #endif
