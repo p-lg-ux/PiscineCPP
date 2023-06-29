@@ -6,7 +6,7 @@
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 19:27:36 by pgros             #+#    #+#             */
-/*   Updated: 2023/06/29 21:03:37 by pgros            ###   ########.fr       */
+/*   Updated: 2023/06/29 21:38:34 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,29 @@ bool Input::splitLine()
 
 void Input::checkDateError()
 {
-	// [...]
+	//A MODIFIER AVEC LA STRUCTURE TIME
+	// std::istringstream	iss(_date);
+	// int					val;
+	// char				c;
+	
+	// iss >> val;
+	// if (iss.fail() || val > 2022 || val < 2009)
+	// 	_errors |= BAD_INPT_DATE;
+	// iss >> c;
+	// if (iss.fail() || c != 'c')
+	// 	_errors |= BAD_INPT_DATE;
+	// iss >> val;
+	// if (iss.fail() || val > 12 || val < 1)
+	// 	_errors |= BAD_INPT_DATE;
+	// iss >> c;
+	// if (iss.fail() || c != 'c')
+	// 	_errors |= BAD_INPT_DATE;
+	
 }
+
+void	Input::checkYear();
+void	Input::checkMonth();
+void	Input::checkDay();
 
 void Input::checkValueError()
 {
@@ -102,7 +123,7 @@ Input& Input::operator=(std::string& line)
 	_errors = NO_ERROR;
 	if (splitLine())
 	{
-		// checkDateError();
+		checkDateError();
 		// checkValueError();		
 	}
 	return *this;

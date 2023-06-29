@@ -6,13 +6,14 @@
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 18:21:02 by pgros             #+#    #+#             */
-/*   Updated: 2023/06/29 20:36:53 by pgros            ###   ########.fr       */
+/*   Updated: 2023/06/29 21:31:58 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef INPUT_HPP
 # define INPUT_HPP
 # include <iostream>
+# include <sstream>
 # include <string>
 # include "errors.hpp"
 
@@ -50,6 +51,9 @@ class Input
 	//other member functions
 	bool	splitLine();
 	void	checkDateError();
+	void	checkYear();
+	void	checkMonth();
+	void	checkDay();
 	void	checkValueError();
 	Input&	operator=(std::string& line);
 };
