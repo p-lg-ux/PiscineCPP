@@ -6,7 +6,7 @@
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 18:21:02 by pgros             #+#    #+#             */
-/*   Updated: 2023/06/30 16:20:05 by pgros            ###   ########.fr       */
+/*   Updated: 2023/07/01 18:45:14 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ class Input
 {
 	private:
 	char			_delimiter;
+	float			_maxvalue;
 	std::string		_line;
 	dateString_t	_date;
 	valueString_t	_value_str;
@@ -34,7 +35,7 @@ class Input
 	
 	public:
 	//constructors and destructors
-	Input(char delim);
+	Input(char delim, float maxvalue);
 	Input(const Input& other);
 	~Input();
 	//overloads
@@ -49,11 +50,10 @@ class Input
 	error_t			getErrors() const;
 
 	//other member functions
+	bool	isValid();
 	bool	splitLine();
+	void	trimWhitespaces();
 	void	checkDateError();
-	void	checkYear();
-	void	checkMonth();
-	void	checkDay();
 	void	checkValueError();
 	Input&	operator=(std::string& line);
 };

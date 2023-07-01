@@ -6,7 +6,7 @@
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 19:27:36 by pgros             #+#    #+#             */
-/*   Updated: 2023/06/30 20:09:51 by pgros            ###   ########.fr       */
+/*   Updated: 2023/07/01 18:48:13 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ Input::Input()
 {
 }
 
-Input::Input(char delim) : _delimiter(delim)
+Input::Input(char delim, float max) : _delimiter(delim), _maxvalue(max)
 {
 }
 
@@ -75,6 +75,14 @@ error_t Input::getErrors() const
 	return (_errors);
 }
 
+bool Input::isValid()
+{
+	if (_errors == NO_ERROR)
+		return(true);
+	return(false);
+}
+
+
 bool Input::splitLine()
 {
 	size_t	delim_pos = _line.find(_delimiter);
@@ -85,24 +93,43 @@ bool Input::splitLine()
 	}
 	_date = _line.substr(0, delim_pos);
 	_value_str = _line.substr(delim_pos + 1);
+	trimWhitespaces();
 	return (true);
 }
 
+void Input::trimWhitespaces()
+{
+	const std::string	whitespaces = " \n\r\t\f\v";
+	size_t	start;
+	size_t	end;
+
+	start = _date.find_first_not_of(whitespaces);
+	if (start != std::string::npos)
+		_date = _date.substr(start);
+	end = _date.find_last_not_of(whitespaces);
+	if (end != std::string::npos)
+		_date = _date.substr(0, end+1);
+	start = _value_str.find_first_not_of(whitespaces);
+	if (start != std::string::npos)
+		_value_str = _value_str.substr(start);
+	end = _value_str.find_last_not_of(whitespaces);
+	if (end != std::string::npos)
+		_value_str = _value_str.substr(0, end+1);
+}
+
+
 void Input::checkDateError()
 {
-	std::tm	time = {};
-	time_t	tmp_time; 
-	char	tmp_char[11];
+	std::tm		time = {};
+	char		tmp_char[11];
 	std::string	tmp_str;
 
-	//TODO: trim whitespaces of _date
 	if (_date.length() != 10 || strptime(_date.c_str(), "%Y-%m-%d", &time) == NULL)
 	{
 		_errors |= BAD_INPT_DATE;
 		return;	
 	}
-	tmp_time = mktime(&time);
-	if (tmp_time < 0)
+	if (mktime(&time) < 0)
 	{
 		_errors |= BAD_INPT_DATE;
 		return;
@@ -112,8 +139,12 @@ void Input::checkDateError()
 	// std::cout << "-----------" << std::endl;
 	// std::cout << "original: " << _date << std::endl;
 	// std::cout << "after mktime: " << tmp_str << std::endl;
-	if (_date.find(tmp_str) == std::string::npos)
+	// if (_date.find(tmp_str) == std::string::npos || time.tm_year < 2009 || time.tm_year > 2022)
+	// 	_errors |= BAD_INPT_DATE;
+	if (tmp_str != _date)
 		_errors |= BAD_INPT_DATE;
+	if (time.tm_year < 2009 - 1900 || time.tm_year > 2022 - 1900)
+		_errors |= INVALID_DATE;
 	// if (iss.fail() || time.tm_year < 2009 || time.tm_year < 2022)
 	// 	_errors |= BAD_INPT_DATE;
 
@@ -139,9 +170,6 @@ void Input::checkDateError()
 	// 	_errors |= BAD_INPT_DATE;
 }
 
-// void	Input::checkYear();
-// void	Input::checkMonth();
-// void	Input::checkDay();
 
 void Input::checkValueError()
 {
@@ -155,7 +183,7 @@ void Input::checkValueError()
 	}
 	if (_value < 0)
 		_errors |= NEG_VALUE;
-	if (_value > 1000)
+	if (_maxvalue && _value > _maxvalue)
 		_errors |= LARGE_VALUE;
 }
 
@@ -166,7 +194,7 @@ Input& Input::operator=(std::string& line)
 	if (splitLine())
 	{
 		checkDateError();
-		// checkValueError();		
+		checkValueError();
 	}
 	return *this;
 }
