@@ -6,7 +6,7 @@
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 18:52:39 by pgros             #+#    #+#             */
-/*   Updated: 2023/07/01 20:02:36 by pgros            ###   ########.fr       */
+/*   Updated: 2023/07/02 22:46:06 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,38 @@ bool BitcoinExchange::loadDatabase()
 			continue;
 		inpt = line;
 		if (inpt.isValid())
-				_db[inpt.getDate()] = inpt.getValue();
+			_db[inpt.getDate()] = inpt.getValue();
 		else
 			return(std::cerr << "Error: " << DB_ERRMSG << std::endl, false);
 	}
 	return (true);
+}
+
+void BitcoinExchange::computeInputFile()
+{
+	std::ifstream	ifs_inpt(_inptFilename.data());
+	std::string		tmp;
+
+	if (!ifs_inpt.is_open())
+		return((void) std::cerr << "Error: " << FILE_ERRMSG << std::endl);
+	std::getline(ifs_inpt, tmp);
+	computeInputLine();
+}
+
+void BitcoinExchange::computeInputLine(std::ifstream& ifs_inpt)
+{
+	Input			inpt('|', 1000);
+	std::string line;
+
+	while (!ifs_inpt.eof())
+	{
+		std::getline(ifs_inpt, line);
+		if (line.empty())
+			continue;
+		inpt = line;
+		if (inpt.isValid())
+			_db[inpt.getDate()] = inpt.getValue();
+		else
+			displayError();
+	}
 }
