@@ -6,7 +6,7 @@
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 20:35:00 by pgros             #+#    #+#             */
-/*   Updated: 2023/07/01 19:28:28 by pgros            ###   ########.fr       */
+/*   Updated: 2023/07/03 17:12:48 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # define FILE_ERRMSG			"couldn't open file"
 # define NODELIM_ERRMSG			"no delimiter in input"
 # define BAD_INPT_ERRMSG		"bad input"
-# define INVALID_DATE_ERRMSG 	"date out of range [2009, 2022]"
+# define INVALID_DATE_ERRMSG 	"date out of range [2009-01-02, 2022-03-29]"
 # define NEGVAL_ERRMSG			"negative value"
 # define LARGEVAL_ERRMSG		"value too large"
 # define DB_ERRMSG				"problem with database file"

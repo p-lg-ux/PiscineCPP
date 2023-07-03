@@ -6,7 +6,7 @@
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 19:27:36 by pgros             #+#    #+#             */
-/*   Updated: 2023/07/01 18:48:13 by pgros            ###   ########.fr       */
+/*   Updated: 2023/07/03 18:18:43 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,6 @@ void Input::trimWhitespaces()
 		_value_str = _value_str.substr(0, end+1);
 }
 
-
 void Input::checkDateError()
 {
 	std::tm		time = {};
@@ -136,44 +135,16 @@ void Input::checkDateError()
 	}
 	strftime(tmp_char, 11, "%Y-%m-%d", &time);
 	tmp_str = tmp_char;
-	// std::cout << "-----------" << std::endl;
-	// std::cout << "original: " << _date << std::endl;
-	// std::cout << "after mktime: " << tmp_str << std::endl;
-	// if (_date.find(tmp_str) == std::string::npos || time.tm_year < 2009 || time.tm_year > 2022)
-	// 	_errors |= BAD_INPT_DATE;
 	if (tmp_str != _date)
 		_errors |= BAD_INPT_DATE;
-	if (time.tm_year < 2009 - 1900 || time.tm_year > 2022 - 1900)
+	if (_date < "2009-01-02" || _date > "2022-03-29")
 		_errors |= INVALID_DATE;
-	// if (iss.fail() || time.tm_year < 2009 || time.tm_year < 2022)
-	// 	_errors |= BAD_INPT_DATE;
-
-	//A MODIFIER AVEC LA STRUCTURE TIME
-	// int					val;
-	// char				c;
-	// std::istringstream	iss(_date);
-	
-	// iss >> time.tm_year;
-	// if (iss.fail() || time.tm_year > 2022 || time.tm_year < 2009)
-	// 	_errors |= BAD_INPT_DATE;
-	// iss >> c;
-	// if (iss.fail() || c != '-')
-	// 	_errors |= BAD_INPT_DATE;
-	// iss >> time.tm_mon;
-	// if (iss.fail() || time.tm_mon > 12 || time.tm_mon < 1)
-	// 	_errors |= BAD_INPT_DATE;
-	// iss >> c;
-	// if (iss.fail() || c != '-')
-	// 	_errors |= BAD_INPT_DATE;
-	// iss >> time.tm_mday;
-	// if (iss.fail() || time.tm_mday > 31 || time.tm_mday < 1)
-	// 	_errors |= BAD_INPT_DATE;
 }
-
 
 void Input::checkValueError()
 {
 	std::istringstream	iss(_value_str);
+	std::string			tmp;
 
 	iss >> _value;
 	if (iss.fail())
@@ -185,6 +156,8 @@ void Input::checkValueError()
 		_errors |= NEG_VALUE;
 	if (_maxvalue && _value > _maxvalue)
 		_errors |= LARGE_VALUE;
+	if (iss >> tmp && !tmp.empty())
+		_errors |= BAD_INPT_VALUE;
 }
 
 Input& Input::operator=(std::string& line)
