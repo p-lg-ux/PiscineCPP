@@ -6,7 +6,7 @@
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 19:30:13 by pgros             #+#    #+#             */
-/*   Updated: 2023/07/03 20:36:23 by pgros            ###   ########.fr       */
+/*   Updated: 2023/07/04 09:25:53 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,8 @@ int	RPN::times(int a, int b)
 
 int	RPN::divide(int a, int b)
 {
+	if (b == 0)
+		throw ErrorException();
 	return (a / b);
 }
 
