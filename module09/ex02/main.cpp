@@ -6,7 +6,7 @@
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 20:18:31 by pgros             #+#    #+#             */
-/*   Updated: 2023/07/04 09:32:18 by pgros            ###   ########.fr       */
+/*   Updated: 2023/07/05 18:34:06 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,16 @@
 
 int main(int ac, char **av)
 {
-	RPN	rpn;
+	PmergeMe	p;
 
 	try {
-		if (ac == 0)
-			throw RPN::ErrorException();
-		rpn.processInput(av[1]);
-		if (rpn._stack.size() != 1)
-			throw RPN::ErrorException();
-		std::cout << rpn._stack.top() << std::endl;
+		if (ac == 1)
+			throw PmergeMe::ErrorException();
+		p.storeInput(ac, av);
+		std::cout << "vector = ";
+		printContainer<std::vector<int> >(p.vect);
+		std::cout << std ::endl;
+		p.FordJohnsonSort<int>(p.vect);
 	}
 	catch (std::exception &e)
 	{
