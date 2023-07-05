@@ -6,7 +6,7 @@
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 09:40:20 by pgros             #+#    #+#             */
-/*   Updated: 2023/07/05 18:33:25 by pgros            ###   ########.fr       */
+/*   Updated: 2023/07/05 21:36:25 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,21 +47,21 @@ class PmergeMe
 		virtual const char* what() const throw();
 	};
 	
-	template<typename T>
+	template<typename T, int N>
 	void FordJohnsonSort(std::vector<T> &v)
 	{
 		T *stray = NULL;
 		
 		//make pairs and identify highest value
-		std::vector< Pair<T> > u(v.size() / 2);
-		if (v.size() < 2)
+		if (v.size() < 2 || N < 2)
 			return;
+		std::vector< Pair<T> > u(v.size() / 2);
 		if (v.size() % 2)
 		{
 			stray = &(*(--v.end()));
-			std::cout << "stray = " << stray << std::endl;
+			std::cout << "stray = " << *stray << std::endl;
 		}
-		for (int i=0; i < u.size(); i++)
+		for (unsigned long i=0; i < u.size(); i++)
 		{
 			u[i] = Pair<T>(v[2*i], v[2*i + 1]);
 			u[i].sort();
@@ -70,9 +70,23 @@ class PmergeMe
 		printContainer(u);
 		std::cout << std::endl; 
 		//sort pairs recursively
-		
+		FordJohnsonSort<Pair<T>, (int)(u.size()) >(u);
 	
 		//insert bs in main chain with binary search
+	}
+	
+	template<typename T>
+	void FordJohnsonSort<T,1>(std::vector<T> &v)
+	{
+		(void)v;
+		return;
+	}
+
+	template<typename T>
+	void FordJohnsonSort<T,0>(std::vector<T> &v)
+	{
+		(void)v;
+		return;
 	}
 };
 #endif

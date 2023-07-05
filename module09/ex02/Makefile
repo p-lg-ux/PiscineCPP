@@ -6,7 +6,7 @@
 #    By: pgros <pgros@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/29 16:11:41 by pgros             #+#    #+#              #
-#    Updated: 2023/07/04 09:29:56 by pgros            ###   ########.fr        #
+#    Updated: 2023/07/05 21:12:53 by pgros            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,12 +14,13 @@ NAME = PmergeMe
 
 CPP_C = c++
 
-CPP_FLAGS = -Wall -Wextra -Werror -std=c++98
+CPP_FLAGS = -Wall -Wextra -Werror -std=c++98 #-ftemplate-backtrace-limit=0
 
 SRC = 	main.cpp \
 		PmergeMe.cpp
 
-INC =	PmergeMe.hpp
+INC =	PmergeMe.hpp \
+		Pair.hpp
 
 OBJ = $(SRC:%.cpp=%.o)
 
