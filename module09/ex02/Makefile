@@ -6,7 +6,7 @@
 #    By: pgros <pgros@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/29 16:11:41 by pgros             #+#    #+#              #
-#    Updated: 2023/07/05 21:12:53 by pgros            ###   ########.fr        #
+#    Updated: 2023/07/06 18:37:48 by pgros            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,8 @@ SRC = 	main.cpp \
 		PmergeMe.cpp
 
 INC =	PmergeMe.hpp \
-		Pair.hpp
+		Pair.hpp \
+		Recursive.hpp
 
 OBJ = $(SRC:%.cpp=%.o)
 
