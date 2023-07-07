@@ -6,7 +6,7 @@
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 16:07:14 by pgros             #+#    #+#             */
-/*   Updated: 2023/07/05 21:37:05 by pgros            ###   ########.fr       */
+/*   Updated: 2023/07/07 17:32:23 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,17 @@ class Pair
 template<typename T>
 std::ostream& operator<<(std::ostream& os, const Pair<T>& rhs)
 {
-	os << "( " << *rhs.a() << " , " << *rhs.b() << " )";
+	os << "( ";
+	if (rhs.a())
+		os << *rhs.a();
+	else
+		os << "NULL";
+	os << " , ";
+	if (rhs.b())
+		os << *rhs.b();
+	else
+		os << "NULL";
+	os << " )";
 	return (os);
 }
 
