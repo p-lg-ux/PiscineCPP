@@ -6,7 +6,7 @@
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 09:41:04 by pgros             #+#    #+#             */
-/*   Updated: 2023/07/05 18:01:01 by pgros            ###   ########.fr       */
+/*   Updated: 2023/08/02 14:00:15 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,7 @@ void PmergeMe::storeInput(int ac, char **av)
 		for (int j=0; av[i][j]!='\0'; j++)
 		{
 			if (!std::isdigit(av[i][j]) )
-			{
-				if (j == 0 && av[i][j] == '-')
-					continue ;
 				throw ErrorException();
-			}
 		}
 		iss.clear();
 		iss << av[i];
@@ -61,9 +57,9 @@ void PmergeMe::storeInput(int ac, char **av)
 		if (iss.fail())
 			throw ErrorException();
 		vect.push_back(val);
+		deq.push_back(val);
 	}
 }
-
 
 const char* PmergeMe::ErrorException::what() const throw()
 {

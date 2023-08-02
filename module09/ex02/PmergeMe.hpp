@@ -6,7 +6,7 @@
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 09:40:20 by pgros             #+#    #+#             */
-/*   Updated: 2023/07/06 17:37:03 by pgros            ###   ########.fr       */
+/*   Updated: 2023/08/02 14:14:52 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,14 @@
 # include <iostream>
 # include <string>
 # include <vector>
-
-template<typename T>
-void printContainer(T& c)
-{
-	typename T::iterator it = c.begin();
-
-	std::cout << "{ ";
-	for (;it != c.end(); it++)
-			std::cout << *it << ", ";
-	std::cout << "}";
-}
+# include <deque>
 
 class PmergeMe
 {
 	public:
 	std::vector<int> vect;
+	std::deque<int> deq;
+	
 	//constructors and destructors
 	PmergeMe();
 	PmergeMe(const PmergeMe& other);
@@ -46,4 +38,35 @@ class PmergeMe
 		virtual const char* what() const throw();
 	};
 };
+
+template<class T>
+std::ostream& operator<<(std::ostream& os, const std::vector<T>& c)
+{
+	typename std::vector<T>::const_iterator it = c.begin();
+
+	for (int i = 0 ;it != c.end() && i < 100 ; it++)
+	{
+		os << *it << " ";
+		i++;
+	}
+	if (it != c.end())
+		os << "[...]";
+	return (os);
+}
+
+template<class T>
+std::ostream& operator<<(std::ostream& os, const std::deque<T>& c)
+{
+	typename std::deque<T>::const_iterator it = c.begin();
+
+	for (int i = 0 ;it != c.end() && i < 100 ; it++)
+	{
+		os << *it << " ";
+		i++;
+	}
+	if (it != c.end())
+		os << "[...]";
+	return (os);
+}
+
 #endif

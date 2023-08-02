@@ -6,7 +6,7 @@
 #    By: pgros <pgros@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/29 16:11:41 by pgros             #+#    #+#              #
-#    Updated: 2023/07/07 17:07:59 by pgros            ###   ########.fr        #
+#    Updated: 2023/08/02 17:12:32 by pgros            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = PmergeMe
 
 CPP_C = c++
 
-CPP_FLAGS = -Wall -Wextra -Werror -std=c++98 -g3 #-ftemplate-backtrace-limit=0
+CPP_FLAGS = -Wall -Wextra -Werror -std=c++98
 
 SRC = 	main.cpp \
 		PmergeMe.cpp
