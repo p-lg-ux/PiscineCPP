@@ -6,7 +6,7 @@
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 17:34:03 by pgros             #+#    #+#             */
-/*   Updated: 2023/08/03 13:24:26 by pgros            ###   ########.fr       */
+/*   Updated: 2023/08/03 15:04:29 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 template <int N>
 class Recursive
 {
-
 	public:
 
 	/*------------------------------- Vector -------------------------------*/
@@ -42,7 +41,7 @@ class Recursive
 		for (unsigned long i = 0; i < u.size(); i++)
 		{
 			u[i] = Pair<T>(v[2 * i], v[2 * i + 1]); //instantiate pairs
-			u[i].sort(); //sort pairs (ie: set highest value as A)
+			u[i].sort(); //sort pair (ie: set highest value as A)
 		}
 		// Sort list of pairs recursively
 		Recursive<N - 1>::template FordJohnsonSort<Pair<T> >(u);
@@ -54,9 +53,9 @@ class Recursive
 	template <typename T>
 	static std::vector<T> insertPairs(std::vector<Pair<T> > &u, T *stray)
 	{
-		unsigned long J_upper = 1;
-		unsigned long J_lower = 1;
-		unsigned long tmp = J_lower;
+		int J_upper = 1;
+		int J_lower = 1;
+		int tmp = J_lower;
 		typename std::vector<T>::iterator pos;
 		typename std::vector<T>::iterator last;
 		std::vector<T> mainChain;
@@ -64,12 +63,12 @@ class Recursive
 	
 		mainChain.push_back(*(u[0].b()));
 		mainChain.push_back(*(u[0].a()));
-		if (J_upper == u.size() && stray)
+		if (J_upper == static_cast<int>(u.size()) && stray)
 		{
 			pos = binary_search(mainChain.begin(), mainChain.end(), *stray);
 			mainChain.insert(pos, *stray);
 		}
-		while (J_upper < u.size())
+		while (J_upper < static_cast<int>(u.size()))
 		{
 			// set Jacobstahl values
 			tmp = J_lower;
@@ -77,20 +76,20 @@ class Recursive
 			J_upper = std::min(Jacobstahl_n(J_lower, tmp), static_cast<int>(u.size()));
 
 			// First add all As to mainChain
-			for (unsigned long i = J_lower; i < J_upper; i++)
+			for (int i = J_lower; i < J_upper; i++)
 				mainChain.push_back(*(u[i].a()));
 
 			// Than insert Bs
 				// first insert stray if it exists
-			if (J_upper == u.size() && stray)
+			if (J_upper == static_cast<int>(u.size()) && stray)
 			{
 				pos = binary_search(mainChain.begin(), mainChain.end(), *stray);
 				mainChain.insert(pos, *stray);
 			}
 				// than add Bs
-			for (unsigned long i = J_upper - 1; i >= J_lower; i--)
+			for (int i = J_upper - 1; i >= J_lower; i--)
 			{
-				if (J_upper == u.size())
+				if (J_upper == static_cast<int>(u.size()))
 					last = mainChain.end();
 				else
 					last = mainChain.begin() + J_upper + J_lower - 1;
@@ -121,7 +120,7 @@ class Recursive
 		for (unsigned long i = 0; i < u.size(); i++)
 		{
 			u[i] = Pair<T>(v[2 * i], v[2 * i + 1]); //instantiate (A, B) pairs
-			u[i].sort(); //sort pairs (ie: set highest value as A)
+			u[i].sort(); //sort pair (ie: set highest value as A)
 		}
 		// Sort list of pairs recursively
 		Recursive<N - 1>::template FordJohnsonSort<Pair<T> >(u);
@@ -133,9 +132,9 @@ class Recursive
 	template <typename T>
 	static std::deque<T> insertPairs(std::deque<Pair<T> > &u, T *stray)
 	{
-		unsigned long J_upper = 1;
-		unsigned long J_lower = 1;
-		unsigned long tmp = J_lower;
+		int J_upper = 1;
+		int J_lower = 1;
+		int tmp = J_lower;
 		typename std::deque<T>::iterator pos;
 		typename std::deque<T>::iterator last;
 		std::deque<T> mainChain;
@@ -143,12 +142,12 @@ class Recursive
 	
 		mainChain.push_back(*(u[0].b()));
 		mainChain.push_back(*(u[0].a()));
-		if (J_upper == u.size() && stray)
+		if (J_upper == static_cast<int>(u.size()) && stray)
 		{
 			pos = binary_search(mainChain.begin(), mainChain.end(), *stray);
 			mainChain.insert(pos, *stray);
 		}
-		while (J_upper < u.size())
+		while (J_upper < static_cast<int>(u.size()))
 		{
 			// set Jacobstahl values
 			tmp = J_lower;
@@ -156,20 +155,20 @@ class Recursive
 			J_upper = std::min(Jacobstahl_n(J_lower, tmp), static_cast<int>(u.size()));
 
 			// First add all As to mainChain
-			for (unsigned long i = J_lower; i < J_upper; i++)
+			for (int i = J_lower; i < J_upper; i++)
 				mainChain.push_back(*(u[i].a()));
 
 			// Than insert Bs
 				// first insert stray if it exists
-			if (J_upper == u.size() && stray)
+			if (J_upper == static_cast<int>(u.size()) && stray)
 			{
 				pos = binary_search(mainChain.begin(), mainChain.end(), *stray);
 				mainChain.insert(pos, *stray);
 			}
 				// than add all Bs
-			for (unsigned long i = J_upper - 1; i >= J_lower; i--)
+			for (int i = J_upper - 1; i >= J_lower; i--)
 			{
-				if (J_upper == u.size())
+				if (J_upper == static_cast<int>(u.size()))
 					last = mainChain.end();
 				else
 					last = mainChain.begin() + J_upper + J_lower - 1;
