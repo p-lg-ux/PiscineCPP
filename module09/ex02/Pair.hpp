@@ -6,7 +6,7 @@
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 16:07:14 by pgros             #+#    #+#             */
-/*   Updated: 2023/07/07 17:32:23 by pgros            ###   ########.fr       */
+/*   Updated: 2023/08/03 13:03:45 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ class Pair
 	private:
 	T*				_a;
 	T*				_b;
-	unsigned int	_idx;
 
 	public:
 	//constructors and destructors
@@ -29,18 +28,19 @@ class Pair
 	Pair<T>(T& a, T& b) : _a(&a), _b(&b){};
 	Pair<T>(const Pair<T>& other) {*this = other;};
 	~Pair<T>(){};
+	
 	//getters
 	T*	a() const {return _a;};
 	T*	b() const {return _b;};
-	unsigned int idx() const {return _idx;};
+
 	//setters
 	void seta(T& a) {_a = &a;};
 	void setb(T& b) {_b = &b;};
-	void setidx(unsigned int idx) {_idx = idx;};
+
 	//overloads
 	Pair<T>& operator=(const Pair<T>& rhs)
 	{
-		_a = rhs.a(); _b = rhs.b(); _idx = rhs.idx(); return (*this);
+		_a = rhs.a(); _b = rhs.b(); return (*this);
 	};
 	bool	operator>(const Pair<T>& rhs) const {return (*_a > *rhs.a());};
 	bool	operator<(const Pair<T>& rhs) const {return (*_a < *rhs.a());};
@@ -48,6 +48,7 @@ class Pair
 	bool	operator<=(const Pair<T>& rhs) const {return (*_a <= *rhs.a());};
 	bool	operator==(const Pair<T>& rhs) const {return (*_a == *rhs.a());};
 	bool	operator!=(const Pair<T>& rhs) const {return (*_a != *rhs.a());};
+	
 	//other
 	void sort()
 	{

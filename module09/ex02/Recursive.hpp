@@ -6,70 +6,26 @@
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 17:34:03 by pgros             #+#    #+#             */
-/*   Updated: 2023/08/02 17:10:52 by pgros            ###   ########.fr       */
+/*   Updated: 2023/08/03 13:24:26 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RECURSIVE_HPP
-#define RECURSIVE_HPP
+# define RECURSIVE_HPP
 #include <iostream>
 #include <string>
 #include <vector>
 #include "Pair.hpp"
 #include "PmergeMe.hpp"
-
-static int call = 0;
-
-template <typename T>
-static typename std::vector<T>::iterator binary_search(typename std::vector<T>::iterator first, typename std::vector<T>::iterator last, T &val)
-{
-	typename std::vector<T>::iterator middle;
-	call += 1;
-
-	// Stop condition
-	if (std::distance(first, last) < 2)
-	{
-		if (val < *first)
-			return (first);
-		else
-			return (last);
-	}
-	// Else
-	middle = first + std::distance(first, last) / 2;
-	if (val < *middle) 
-		return (binary_search(first, middle, val)); // calls binary_search on left part
-	else 
-		return (binary_search(middle, last, val)); // calls binary_search on right part
-}
-
-template <typename T>
-static typename std::deque<T>::iterator binary_search(typename std::deque<T>::iterator first, typename std::deque<T>::iterator last, T &val)
-{
-	typename std::deque<T>::iterator middle;
-	call += 1;
-
-	// Stop condition
-	if (std::distance(first, last) < 2)
-	{
-		if (val < *first)
-			return (first);
-		else
-			return (last);
-	}
-	// Else
-	middle = first + std::distance(first, last) / 2;
-	if (val < *middle) 
-		return (binary_search(first, middle, val)); // calls binary_search on left part
-	else 
-		return (binary_search(middle, last, val)); // calls binary_search on right part
-}
-
+#include "binarySearch.hpp"
 
 template <int N>
 class Recursive
 {
 
-public:
+	public:
+
+	/*------------------------------- Vector -------------------------------*/
 	template <typename T>
 	static void FordJohnsonSort(std::vector<T> &v)
 	{
@@ -79,19 +35,19 @@ public:
 		if (v.size() < 2 || N < 2)
 			return;
 			
-		// Make pairs and identify highest value
+		// Make pairs (A, B) and identify highest value as A
 		std::vector<Pair<T> > u(v.size() / 2);
 		if (v.size() % 2) //stores stray value in case of an odd size
 			stray = &(*(--v.end()));
 		for (unsigned long i = 0; i < u.size(); i++)
 		{
 			u[i] = Pair<T>(v[2 * i], v[2 * i + 1]); //instantiate pairs
-			u[i].sort(); //sort pairs
+			u[i].sort(); //sort pairs (ie: set highest value as A)
 		}
-		// Sort pairs recursively
+		// Sort list of pairs recursively
 		Recursive<N - 1>::template FordJohnsonSort<Pair<T> >(u);
 		
-		// Insert bs in main chain with binary search
+		// Insert Bs in main chain with binary search
 		v = insertPairs(u, stray);
 	}
 
@@ -115,24 +71,23 @@ public:
 		}
 		while (J_upper < u.size())
 		{
-			// std::cout << "J_upper = " << J_upper << std::endl;
 			// set Jacobstahl values
 			tmp = J_lower;
 			J_lower = J_upper;
 			J_upper = std::min(Jacobstahl_n(J_lower, tmp), static_cast<int>(u.size()));
 
-			// add all as to mainChain
+			// First add all As to mainChain
 			for (unsigned long i = J_lower; i < J_upper; i++)
 				mainChain.push_back(*(u[i].a()));
 
-			// insert bs
-			// first insert stray if it exists
+			// Than insert Bs
+				// first insert stray if it exists
 			if (J_upper == u.size() && stray)
 			{
 				pos = binary_search(mainChain.begin(), mainChain.end(), *stray);
 				mainChain.insert(pos, *stray);
 			}
-			// than add 
+				// than add Bs
 			for (unsigned long i = J_upper - 1; i >= J_lower; i--)
 			{
 				if (J_upper == u.size())
@@ -148,6 +103,8 @@ public:
 	}
 
 
+
+	/*------------------------------- Deque -------------------------------*/
 	template <typename T>
 	static void FordJohnsonSort(std::deque<T> &v)
 	{
@@ -157,19 +114,19 @@ public:
 		if (v.size() < 2 || N < 2)
 			return;
 			
-		// Make pairs and identify highest value
+		// Make pairs (A, B) and identify highest value as A
 		std::deque<Pair<T> > u(v.size() / 2);
-		if (v.size() % 2) //stores stray value in case of an odd size
+		if (v.size() % 2) //store stray value in case of an odd size
 			stray = &(*(--v.end()));
 		for (unsigned long i = 0; i < u.size(); i++)
 		{
-			u[i] = Pair<T>(v[2 * i], v[2 * i + 1]); //instantiate pairs
-			u[i].sort(); //sort pairs
+			u[i] = Pair<T>(v[2 * i], v[2 * i + 1]); //instantiate (A, B) pairs
+			u[i].sort(); //sort pairs (ie: set highest value as A)
 		}
-		// Sort pairs recursively
+		// Sort list of pairs recursively
 		Recursive<N - 1>::template FordJohnsonSort<Pair<T> >(u);
 		
-		// Insert bs in main chain with binary search
+		// Insert Bs in main chain with binary search
 		v = insertPairs(u, stray);
 	}
 
@@ -193,24 +150,23 @@ public:
 		}
 		while (J_upper < u.size())
 		{
-			// std::cout << "J_upper = " << J_upper << std::endl;
 			// set Jacobstahl values
 			tmp = J_lower;
 			J_lower = J_upper;
 			J_upper = std::min(Jacobstahl_n(J_lower, tmp), static_cast<int>(u.size()));
 
-			// add all as to mainChain
+			// First add all As to mainChain
 			for (unsigned long i = J_lower; i < J_upper; i++)
 				mainChain.push_back(*(u[i].a()));
 
-			// insert bs
-			// first insert stray if it exists
+			// Than insert Bs
+				// first insert stray if it exists
 			if (J_upper == u.size() && stray)
 			{
 				pos = binary_search(mainChain.begin(), mainChain.end(), *stray);
 				mainChain.insert(pos, *stray);
 			}
-			// than add 
+				// than add all Bs
 			for (unsigned long i = J_upper - 1; i >= J_lower; i--)
 			{
 				if (J_upper == u.size())
