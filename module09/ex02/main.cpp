@@ -6,7 +6,7 @@
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 20:18:31 by pgros             #+#    #+#             */
-/*   Updated: 2023/08/02 17:02:41 by pgros            ###   ########.fr       */
+/*   Updated: 2023/08/04 13:27:41 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,12 @@ int main(int ac, char **av)
 		std::cout << "Before:\t" << p.vect << std::endl;
 		
 		time = clock();
-		Recursive<128>::FordJohnsonSort<int>(p.vect);
+		Recursive<32>::FordJohnsonSort<int>(p.vect);
 		time = clock() - time;
 		std::cout << "After:\t" << p.vect << std::endl;
 		printDuration(time, "vector", p.vect.size());
 		time = clock();
-		Recursive<128>::FordJohnsonSort<int>(p.deq);
+		Recursive<32>::FordJohnsonSort<int>(p.deq);
 		time = clock() - time;
 		printDuration(time, "deque", p.deq.size());
 

@@ -6,7 +6,7 @@
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 17:34:03 by pgros             #+#    #+#             */
-/*   Updated: 2023/08/03 15:04:29 by pgros            ###   ########.fr       */
+/*   Updated: 2023/08/04 18:55:26 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,10 @@ class Recursive
 		}
 		while (J_upper < static_cast<int>(u.size()))
 		{
-			// set Jacobstahl values
+			// set Jacobsthal values
 			tmp = J_lower;
 			J_lower = J_upper;
-			J_upper = std::min(Jacobstahl_n(J_lower, tmp), static_cast<int>(u.size()));
+			J_upper = std::min(Jacobsthal_n(J_lower, tmp), static_cast<int>(u.size()));
 
 			// First add all As to mainChain
 			for (int i = J_lower; i < J_upper; i++)
@@ -149,10 +149,10 @@ class Recursive
 		}
 		while (J_upper < static_cast<int>(u.size()))
 		{
-			// set Jacobstahl values
+			// set Jacobsthal values
 			tmp = J_lower;
 			J_lower = J_upper;
-			J_upper = std::min(Jacobstahl_n(J_lower, tmp), static_cast<int>(u.size()));
+			J_upper = std::min(Jacobsthal_n(J_lower, tmp), static_cast<int>(u.size()));
 
 			// First add all As to mainChain
 			for (int i = J_lower; i < J_upper; i++)
@@ -172,7 +172,7 @@ class Recursive
 					last = mainChain.end();
 				else
 					last = mainChain.begin() + J_upper + J_lower - 1;
-				// binary search in a list of size (2^n)-1 = t_n + t_n-1 - 1 where t_n = Jacobstahl_n
+				// binary search in a list of size (2^n)-1 = t_n + t_n-1 - 1 where t_n = Jacobsthal_n
 				pos = binary_search(mainChain.begin(), last, *(u[i].b()));
 				mainChain.insert(pos, *(u[i].b()));
 			}
@@ -180,10 +180,10 @@ class Recursive
 		return (mainChain);
 	}
 
-	static int Jacobstahl_n(int Jacobstahl_n_1, int Jacobstahl_n_2)
+	static int Jacobsthal_n(int Jacobsthal_n_1, int Jacobsthal_n_2)
 	{
 		// Jacobsthal suite : t_n = t_n-1 + 2*t_n-2
-		return (Jacobstahl_n_1 + 2 * Jacobstahl_n_2);
+		return (Jacobsthal_n_1 + 2 * Jacobsthal_n_2);
 	}
 
 };
