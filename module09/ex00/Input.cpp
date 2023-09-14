@@ -6,7 +6,7 @@
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 19:27:36 by pgros             #+#    #+#             */
-/*   Updated: 2023/07/03 18:18:43 by pgros            ###   ########.fr       */
+/*   Updated: 2023/09/14 20:16:24 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,7 +137,8 @@ void Input::checkDateError()
 	tmp_str = tmp_char;
 	if (tmp_str != _date)
 		_errors |= BAD_INPT_DATE;
-	if (_date < "2009-01-02" || _date > "2022-03-29")
+	// if (_date < "2009-01-02" || _date > "2022-03-29")
+	if (_date < "2009-01-02")
 		_errors |= INVALID_DATE;
 }
 

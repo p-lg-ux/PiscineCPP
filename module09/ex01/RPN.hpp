@@ -6,7 +6,7 @@
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 19:30:26 by pgros             #+#    #+#             */
-/*   Updated: 2023/09/14 15:28:13 by pgros            ###   ########.fr       */
+/*   Updated: 2023/09/14 21:04:29 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,10 @@ class RPN
 	void	computeOperator(int oper);
 
 	class ErrorException : public std::exception
+	{
+		virtual const char* what() const throw();
+	};
+	class OverflowException : public std::exception
 	{
 		virtual const char* what() const throw();
 	};
