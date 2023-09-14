@@ -6,7 +6,7 @@
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 20:18:31 by pgros             #+#    #+#             */
-/*   Updated: 2023/08/04 13:27:41 by pgros            ###   ########.fr       */
+/*   Updated: 2023/09/14 16:39:27 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,13 @@ int main(int ac, char **av)
 		if (ac == 1)
 			throw PmergeMe::ErrorException();
 		p.storeInput(ac, av);
-		std::cout << "Before:\t" << p.vect << std::endl;
+		std::cout << std::endl << "Before:\t" << p.vect << std::endl;
 		
 		time = clock();
 		Recursive<32>::FordJohnsonSort<int>(p.vect);
 		time = clock() - time;
-		std::cout << "After:\t" << p.vect << std::endl;
+		std::cout << std::endl << "After:\t" << p.vect << std::endl;
+		std::cout << std::endl;
 		printDuration(time, "vector", p.vect.size());
 		time = clock();
 		Recursive<32>::FordJohnsonSort<int>(p.deq);

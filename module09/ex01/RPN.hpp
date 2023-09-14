@@ -6,7 +6,7 @@
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 19:30:26 by pgros             #+#    #+#             */
-/*   Updated: 2023/07/03 20:21:18 by pgros            ###   ########.fr       */
+/*   Updated: 2023/09/14 15:28:13 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # include <iostream>
 # include <string>
 # include <stack>
+# include <list>
 # include <sstream>
 
 # define OPERATORS "+-/*"
@@ -31,7 +32,7 @@ class RPN
 	int	divide(int a, int b);
 
 	public:
-	std::stack<int> _stack;
+	std::stack<int, std::list<int> > _stack;
 	//constructors and destructors
 	RPN();
 	RPN(const RPN& other);
