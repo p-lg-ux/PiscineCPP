@@ -6,7 +6,7 @@
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 19:30:26 by pgros             #+#    #+#             */
-/*   Updated: 2023/09/14 21:04:29 by pgros            ###   ########.fr       */
+/*   Updated: 2023/09/18 17:35:39 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,18 @@ class RPN
 	{
 		virtual const char* what() const throw();
 	};
+
 	class OverflowException : public std::exception
+	{
+		virtual const char* what() const throw();
+	};
+
+	class DivisionByZeroException : public std::exception
+	{
+		virtual const char* what() const throw();
+	};
+
+	class InvalidInputException : public std::exception
 	{
 		virtual const char* what() const throw();
 	};

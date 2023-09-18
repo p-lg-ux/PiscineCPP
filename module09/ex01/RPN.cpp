@@ -6,7 +6,7 @@
 /*   By: pgros <pgros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 19:30:13 by pgros             #+#    #+#             */
-/*   Updated: 2023/09/14 21:36:51 by pgros            ###   ########.fr       */
+/*   Updated: 2023/09/18 17:46:55 by pgros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,15 @@ void RPN::processInput(std::string inpt)
 	size_t					oper;
 
 	if (inpt.empty())
-		throw ErrorException();
+		throw InvalidInputException();
 	for (;it != inpt.end(); it++)
 	{
 		if (it != inpt.begin())
 		{
-			c = *it++;
+			c = *it;
 			if (c != ' ')
-				throw ErrorException();
+				throw InvalidInputException();
+			it++;
 		}
 		c = *it;
 		if (std::isdigit(c))
@@ -63,7 +64,7 @@ void RPN::processInput(std::string inpt)
 		else if ((oper = operators.find(c)) != std::string::npos)
 			computeOperator(oper);
 		else
-			throw ErrorException();
+			throw InvalidInputException();
 	}
 }
 
@@ -78,7 +79,7 @@ void RPN::computeOperator(int oper)
 	int a, b;
 	
 	if (_stack.size() < 2)
-		throw ErrorException();
+		throw InvalidInputException();
 	b = _stack.top();
 	_stack.pop();
 	a = _stack.top();
@@ -89,26 +90,21 @@ void RPN::computeOperator(int oper)
 
 int	RPN::plus(int a, int b)
 {
+	if (a != (a + b) - b)
+		throw OverflowException();
 	return (a + b);
 }
 
 int	RPN::minus(int a, int b)
 {
+	if (a != (a - b) + b)
+		throw OverflowException();
 	return (a - b);
 }
 
 int	RPN::times(int a, int b)
 {
-	int compare;
-	if ((a > 0 && b > 0) || (a < 0 && b < 0))
-		compare = std::numeric_limits<int>::max();
-	else
-		compare = std::numeric_limits<int>::min();
-	int ret1 = compare / std::abs(a);
-	int ret2 = compare / std::abs(b);
-
-	if (((a > 0 && b > 0) || (a < 0 && b < 0)) \
-		&& (std::abs(b) > ret1 || std::abs(a) > ret2))
+	if (b != 0 && a != (a * b) / b)
 		throw OverflowException();
 	return (a * b);
 }
@@ -116,16 +112,26 @@ int	RPN::times(int a, int b)
 int	RPN::divide(int a, int b)
 {
 	if (b == 0)
-		throw ErrorException();
+		throw DivisionByZeroException();
 	return (a / b);
 }
 
 const char* RPN::ErrorException::what() const throw()
 {
-	return ("Error");
+	return ("");
 }
 
-const char* RPN::ErrorException::what() const throw()
+const char* RPN::InvalidInputException::what() const throw()
 {
-	return ("Overflow");
+	return (": Invalid input");
+}
+
+const char* RPN::OverflowException::what() const throw()
+{
+	return (": Integer overflow");
+}
+
+const char* RPN::DivisionByZeroException::what() const throw()
+{
+	return (": Division by zero");
 }
